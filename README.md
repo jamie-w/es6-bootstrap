@@ -1,9 +1,4 @@
-<<<<<<< 836afa672a8c4bd435fb5a521d6e68db0c25f37b
-# es6-bootstrap
-A starting point for future js projects
-=======
 react-hot-boilerplate
-=====================
 
 The minimal dev environment to enable live-editing React components.
 
@@ -15,7 +10,7 @@ npm start
 open http://localhost:3000
 ```
 
-Now edit `src/App.js`.  
+Now edit `src/App.js`.
 Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
 
 ### Linting
@@ -49,4 +44,3 @@ This boilerplate is purposefully simple to show the minimal configuration for Re
 * [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
 * [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
 * Ping dan_abramov on Twitter or #reactjs IRC
->>>>>>> Bootstrapped from gaeron's react-hot-boilerplate
