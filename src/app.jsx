@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 
-export default class App extends Component {
+import UserList from './users/components/userlist';
+import CreateUser from './users/components/createuser';
+
+class App extends Component {
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <div>
+        <h1>This is a chat app.</h1>
+        <button>Create User</button>
+        <button>Select User</button>
+        <UserList/>
+        <CreateUser/>
+      </div>
     );
   }
 }
+
+export default App;
