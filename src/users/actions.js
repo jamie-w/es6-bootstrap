@@ -1,7 +1,9 @@
+let lastId = 0;
 export const createUser = (state, username) => {
-    console.log("In actions.js", state, username);
-    if(typeof state.users == 'undefined') state.users = [];
-    console.log(state.users);
-    state.users.push({username});
-    return state;
+    return Object.assign({}, state, {
+        userlist: [
+            ...state.userlist,
+            {id: ++lastId, username}
+        ]
+    });
 }

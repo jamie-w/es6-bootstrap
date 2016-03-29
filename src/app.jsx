@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import DevTools from './devtools';
 import UserList from './users/components/userlist';
 import CreateUser from './users/components/createuser';
 
@@ -8,10 +9,13 @@ class App extends Component {
     return (
       <div>
         <h1>This is a chat app.</h1>
-        <button>Create User</button>
-        <button>Select User</button>
-        <UserList/>
+        <p>
+            <button>Create User</button>
+            <button>Select User</button>
+        </p>
         <CreateUser/>
+        <UserList/>
+        <DevTools/>
       </div>
     );
   }

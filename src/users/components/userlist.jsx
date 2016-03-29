@@ -4,19 +4,17 @@ import {connect} from 'react-redux';
 import User from './user';
 
 const mapStateToProps = (state) => {
-    console.log("UserList mapStateToProps", state);
-    return {users: state.users};
+    return {users: state.users.userlist};
 }
 
 class UserList extends React.Component {
     render(){
-        console.log("UserList", this);
-        return this.props.users ?
-            <ul>{this.props.users.map(function(user){
-                    <User {...user}/>
-                })}
-            </ul> :
-            <ul/>;
+        return (
+            <ul>{this.props.users.map(user =>
+                    <User key={user.id} {...user}/>
+                )}
+            </ul>
+        );
     }
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, compose} from 'redux';
 import {Provider} from 'react-redux';
+
+import DevTools from './devtools';
 
 // App reducers
 import userReducers from './users/reducers';
@@ -12,12 +14,22 @@ import App from './app';
 import {userlist} from './data';
 
 const reducers = combineReducers({
-    users: userReducers, chats: chatReducers
+    users: userReducers,
+    chats: chatReducers
 });
 
-const initialState = { users: [] };
-
-let store = createStore(reducers, initialState);
+let store = createStore(
+    reducers,
+    {
+        users: {
+            userlist: []
+        }
+    },
+    compose(
+        DevTools.instrument()
+    )
+);
+console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
