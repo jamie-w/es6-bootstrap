@@ -11,8 +11,6 @@ import chatReducers from './chat/reducers';
 
 import App from './app';
 
-import {userlist} from './data';
-
 const reducers = combineReducers({
     users: userReducers,
     chats: chatReducers
@@ -22,15 +20,14 @@ let store = createStore(
     reducers,
     {
         users: {
-            userlist: []
+            userlist: [],
+            currUser: false
         }
     },
     compose(
         DevTools.instrument()
     )
 );
-console.log(store.getState());
-
 ReactDOM.render(
     <Provider store={store}>
         <App/>

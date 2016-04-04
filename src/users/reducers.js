@@ -1,9 +1,11 @@
-import {createUser} from './actions';
+import {register, login} from './actions';
 
-export default function reducer(state=[], action) {
+export default (state=[], action) => {
     switch(action.type){
-        case 'CREATE_USER':
-            return createUser(state, action.username);
+        case 'REGISTER':
+            return register(state, action);
+        case 'LOGIN':
+            return login(state, action);
         default:
             return state;
     }

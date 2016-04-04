@@ -1,15 +1,47 @@
+var express = require('express');
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var webpackConfig = require('./webpack.prod.config.js');
+var path = require('path');
+var app = express();
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
+var compiler = webpack(webpackConfig);
+
+app.use(webpackDevMiddleware(compiler, {
   hot: true,
-  historyApiFallback: true
-}).listen(3000, 'localhost', function (err, result) {
-  if (err) {
-    return console.log(err);
-  }
+  filename: 'bundle.js',
+  publicPath: '/static/',
+  stats: {
+    colors: true,
+  },
+  historyApiFallback: true,
+}));
 
-  console.log('Listening at http://localhost:3000/');
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000,
+}));
+
+app.get('/', function (req, res) {
+  res.send(<!doctype html>
+<html>
+  <head>
+    <title>Sample App</title>
+  </head>
+  <body>
+    <div id='root'>
+    </div>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>
+);
+});
+
+var server = app.listen(3000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
 });

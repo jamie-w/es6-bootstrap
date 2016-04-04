@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import {connect} from 'react-redux';
 
 import DevTools from './devtools';
 import UserList from './users/components/userlist';
-import CreateUser from './users/components/createuser';
+import Register from './users/components/register';
+import Login from './users/components/login';
 
-class App extends Component {
+const mapStateToProps = (state) => ({
+    currUser: state.users.currUser
+})
+
+class App extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>This is a chat app.</h1>
-        <p>
-            <button>Create User</button>
-            <button>Select User</button>
-        </p>
-        <CreateUser/>
-        <UserList/>
-        <DevTools/>
-      </div>
+    return (this.props.currUser ?
+        <div>
+            <h1>Welcome {this.props.currUser}</h1>
+            <DevTools/>
+        </div> :
+        <div>
+            <h1>This is a chat app.</h1>
+            <Register/>
+            <Login/>
+            <UserList/>
+            <DevTools/>
+        </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);

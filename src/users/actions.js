@@ -1,23 +1,59 @@
+import bows from 'bows';
+let logger = bows("users.actions");
 let lastUserId = 0;
-export const createUser = (state, username) => {
 
-    let userFound = false, errorMsg = false;
+export const register = (state, action) => {
+
+    let userFound = false, registerErrorMsg = false,
+        username = action.username,
+        password = action.password;
+
     if(!username)
-        errorMsg = 'Username cannot be empty';
+        registerErrorMsg = 'Username cannot be empty';
 
     state.userlist.map(user => {
         if(user.username == username)
-            errorMsg = 'That user already exists';
+            registerErrorMsg = 'That user already exists';
     });
 
-    if(errorMsg)
-        return Object.assign({}, state, {errorMsg});
+    if(registerErrorMsg)
+        return Object.assign({}, state, {registerErrorMsg});
 
     return Object.assign({}, state, {
-        errorMsg: '',
+        registerErrorMsg: '',
         userlist: [
             ...state.userlist,
-            {id: ++lastUserId, username}
+            {id: ++lastUserId, username, password}
         ]
+    });
+}
+
+export const login = (state, action) => {
+
+    let foundUser=false, loginErrorMsg='',
+        username = action.username,
+        password = action.password;
+
+    if(!username || !password)
+        loginErrorMsg = "Please enter a username and password.";
+
+    else {
+        state.userlist.map(user => {
+            logger("comparing username", user.username, username);
+            logger("comparing password", user.password, password);
+            if(user.username == username && user.password==password){
+                return foundUser = true;
+            }
+        });
+    }
+    logger("foundUser", foundUser);
+    if(!foundUser) loginErrorMsg = 'User not found.';
+
+    if(loginErrorMsg)
+        return Object.assign({}, state, {loginErrorMsg});
+
+    return Object.assign({}, state, {
+        loginErrorMsg: '',
+        currUser: username
     });
 }
