@@ -2,7 +2,7 @@ var app = require('express')();
 var webpackDevMiddleware = require("webpack-dev-middleware");
 var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.prod.config');
+var webpackConfig = require('./webpack.config');
 var path = require('path');
 var bows = require('bows');
 
@@ -29,7 +29,7 @@ app.use(webpackHotMiddleware(compiler, {
 }));
 
 // divert api requests
-app.use('/api', require('./test_api/routes'));
+app.use('/api', require('./api/routes'));
 
 // create the react app
 app.get('*', function (req, res) {
