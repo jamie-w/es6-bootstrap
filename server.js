@@ -16,6 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
     filename: 'bundle.js',
     publicPath: '/static/',
     historyApiFallback: true,
+    stats: {
+        colors: true,
+        chunkModules: false
+    }
 }));
 
 app.use(webpackHotMiddleware(compiler, {
