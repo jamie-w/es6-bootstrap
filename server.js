@@ -36,6 +36,7 @@ app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname+'/index.html'));
 });
 
+// open up to the world
 var server = app.listen(3000, function () {
     console.log('Example app listening at http://localhost:3000');
 });

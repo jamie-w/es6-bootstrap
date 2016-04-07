@@ -5,7 +5,10 @@ router.use('/users', require('./users'));
 router.use('/chats', require('./chats'));
 
 router.get('/', function(req, res){
-    res.sendFile(path.join(__dirname+'/api.html'));
+    if(req.xhr)
+        res.json({'hello': 'api'});
+    else
+        res.sendFile(path.join(__dirname+'/api.html'));
 });
 
 module.exports = router;
