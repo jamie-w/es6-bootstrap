@@ -36,10 +36,13 @@ let store = createStore(
 );
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route path="/" component={App}/>
-            <Route path="*" component={NotFound}/>
-        </Router>
+        <div>
+            <Router history={browserHistory}>
+                <Route path="/" component={App}/>
+                <Route path="*" component={NotFound}/>
+            </Router>
+            <DevTools/>
+        </div>
     </Provider>,
     document.getElementById('root')
 );

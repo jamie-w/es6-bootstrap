@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => ({
     errorMsg: state.users.registerErrorMsg,
+    successMsg: state.users.registerSuccessMsg
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -29,6 +30,7 @@ class Register extends React.Component{
                 )}>
                     Register
                 </button>
+                <p>{this.props.successMsg}</p>
                 <p>{this.props.errorMsg}</p>
             </div>
         );
