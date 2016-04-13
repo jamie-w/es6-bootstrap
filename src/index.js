@@ -26,7 +26,9 @@ let store = createStore(
     {
         users: {
             userlist: [],
-            currUser: false
+            currUser: false,
+            errors: false,
+            msgs: false
         }
     },
     compose(

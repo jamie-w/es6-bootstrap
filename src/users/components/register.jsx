@@ -3,8 +3,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => ({
-    errorMsg: state.users.registerErrorMsg,
-    successMsg: state.users.registerSuccessMsg
+    errorMsg: state.users.errors.register,
+    successMsg: state.users.msgs.register
 })
 
 const mapDispatchToProps = (dispatch) => ({

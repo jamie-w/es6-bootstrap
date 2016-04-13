@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => ({
-    errorMsg: state.users.loginErrorMsg,
+    errorMsg: state.users.errors.login,
 })
 
 const mapDispatchToProps = (dispatch) => ({
