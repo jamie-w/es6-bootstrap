@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 var config = {
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/index.js',
   ],

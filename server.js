@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 var path = require('path');
 var bows = require('bows');
+var bodyParser = require('body-parser');
 
 // Some important variables
 var compiler = webpack(webpackConfig);
@@ -26,6 +27,12 @@ app.use(webpackHotMiddleware(compiler, {
     log: console.log,
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000,
+}));
+
+// to parse post requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended:true
 }));
 
 // divert api requests

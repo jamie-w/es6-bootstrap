@@ -3,12 +3,14 @@ import {register, login} from './actions';
 export default (state=[], action) => {
     switch(action.type){
         case 'REGISTER':
-            return action;
-            return register(state, action);
+            return {...state, registerParams: {
+                username: action.username,
+                password: action.password
+            }};
         case 'REGISTER_FAIL':
-            return {...state, msg: 'Register failed', errors: action.errors};
+            return {...state, registerErrorMsg: action.errors};
         case 'REGISTER_SUCCESS':
-            return {...state, msg: 'Register success'};
+            return {...state, currUser: action.username};
         case 'LOGIN':
             return login(state, action);
         default:

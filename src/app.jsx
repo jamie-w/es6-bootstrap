@@ -16,14 +16,12 @@ class App extends React.Component {
     return (this.props.currUser ?
         <div>
             <h1>Welcome {this.props.currUser}</h1>
-            <DevTools/>
         </div> :
         <div>
             <h1>This is a chat app.</h1>
             <Register/>
             <Login/>
             <UserList/>
-            <DevTools/>
         </div>
     );
   }
