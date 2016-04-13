@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers, compose} from 'redux';
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {Router, Route, Link, browserHistory} from 'react-router';
+import {sagaMiddleware} from 'redux-saga';
 
 import DevTools from './devtools';
 
 // App reducers
 import userReducers from './users/reducers';
 import chatReducers from './chat/reducers';
+
+import userSagas from './users/sagas';
 
 import App from './app';
 import NotFound from './notfound';
@@ -27,7 +30,8 @@ let store = createStore(
         }
     },
     compose(
-        DevTools.instrument()
+        applyMiddleware(createSagaMiddleware(userSagas)),
+        DevTools.instrument(),
     )
 );
 ReactDOM.render(

@@ -1,7 +1,12 @@
 import bows from 'bows';
+
 let logger = bows("users.actions");
 let lastUserId = 0;
 
+
+/**
+    Not currently used because of redux-saga development
+*/
 export const register = (state, action) => {
 
     let userFound = false, registerErrorMsg = false,
