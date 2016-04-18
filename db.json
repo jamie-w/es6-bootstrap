@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "username": "foo",
+      "password": "bar",
+      "id": 1
+    },
+    {
+      "username": "test",
+      "password": "user",
+      "id": 2
+    },
+    {
+      "username": "jamie",
+      "password": "weatherby",
+      "id": 3
+    },
+    {
+      "username": "weatherby",
+      "password": "james",
+      "id": 4
+    },
+    {
+      "username": "testing",
+      "password": "users",
+      "id": 5
+    },
+    {
+      "username": "james",
+      "password": "test",
+      "id": 6
+    },
+    {
+      "username": "weath",
+      "password": "befine",
+      "id": 7
+    }
+  ]
+}

@@ -10,6 +10,13 @@ export default (state=[], action) => {
             return {...state, errors: {login: action.errors}, msgs:false};
         case 'LOGIN_SUCCESS':
             return {...state, errors: false, msgs: false, currUser: action.username};
+        case 'ADD_USER':
+            return {...state,
+                userlist:[
+                    ...state.userlist,
+                    action.user
+                ]
+            }
         default:
             return state;
     }

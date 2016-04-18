@@ -7,9 +7,12 @@ var path = require('path');
 var bows = require('bows');
 var bodyParser = require('body-parser');
 
+var settings = require('./settings');
+
 // Some important variables
 var compiler = webpack(webpackConfig);
 var logger = bows("The server");
+
 
 // browser hot reloading
 app.use(webpackDevMiddleware(compiler, {

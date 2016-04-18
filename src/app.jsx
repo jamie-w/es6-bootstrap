@@ -19,9 +19,13 @@ class App extends React.Component {
         </div> :
         <div>
             <h1>This is a chat app.</h1>
-            <Register/>
-            <Login/>
-            <UserList/>
+            <div style={{float:'left'}}>
+                <Register/>
+                <Login/>
+            </div>
+            <div style={{float:'left', margin:'30px'}}>
+                <UserList/>
+            </div>
         </div>
     );
   }

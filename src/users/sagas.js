@@ -10,20 +10,21 @@ const logger = bows('users.sagas');
     Simple api connection 'adding a user'. Basic set of tests for
     sagas.
 */
-function* doRegister(action) {
+export function* doRegister(action) {
     try {
-        logger('in doRegister', action);
         var resp = yield call(axios.post, '/api/users/register', action);
         if(resp.data.errors)
             yield put({type: 'REGISTER_FAIL', errors: resp.data.errors});
-        else
+        else{
             yield put({type: 'REGISTER_SUCCESS', msg: resp.data.msg});
+            yield put({type: 'ADD_USER', user: resp.data});
+        }
     } catch(error) {
         yield put({type: 'REGISTER_FAIL', error});
     }
 }
 
-function* doLogin(action){
+export function* doLogin(action){
     try {
         logger('in doLogin', action);
         var resp = yield call(axios.post, '/api/users/login', action);
@@ -36,10 +37,10 @@ function* doLogin(action){
     }
 }
 
-function* watchLogin(){
+export function* watchLogin(){
     yield* takeEvery('LOGIN', doLogin)
 }
-function* watchRegister(){
+export function* watchRegister(){
     yield* takeEvery('REGISTER', doRegister);
 }
 

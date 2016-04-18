@@ -1,3 +1,4 @@
+import polyfill from 'babel-polyfill';
 import {expect} from 'chai';
 
 describe("Testing", () => {
