@@ -2,9 +2,9 @@ var bows = require('bows');
 
 var settings = function(){
     switch(process.env.NODE_ENV){
-        case 'PROD':
+        case 'prod':
             return require('./conf/prod.js');
-        case 'TEST':
+        case 'test':
             return require('./conf/test.js');
         default:
             return require('./conf/dev.js');
