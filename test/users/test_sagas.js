@@ -16,7 +16,7 @@ describe("user sagas", () => {
         username: 'test_user',
         password: 'fake_pass'
     };
-    it('making an api call', () => {
+    it('makes an api call', () => {
         var saga = doRegister(action);
         expect(
             saga.next().value
@@ -24,7 +24,7 @@ describe("user sagas", () => {
             call(axios.post, '/api/users/register', action)
         );
     });
-    it("registering a user", () => {
+    it("registers a user", () => {
         var saga = doRegister(action);
         let resp = {data: {msg: 'Hello world'}};
         saga.next();
@@ -39,7 +39,7 @@ describe("user sagas", () => {
         );
     });
 
-    it("failing to register  a user", () => {
+    it("fails to register  a user", () => {
         let saga = doRegister(action);
         let resp = {data: {errors: 'User not found'}};
 

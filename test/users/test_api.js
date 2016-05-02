@@ -9,20 +9,18 @@ describe('users api', () => {
         chai.request(server)
             .get('/api/users')
             .end((err, res) => {
-                expect(res.statusCode).to.equal(200);
-            });
-    });
-    it('register only accepts POST', () => {
-        /*chai.request(server)
-            .post('/api/users/register')
-            .end((err, res) => {
-                expect(res.statusCode).to.equal(200);
-            });*/
-        chai.request(server)
-            .get('/api/users/register')
-            .end((err, res) => {
-                logger(res.statusCode);
+                expect(err).to.be.null;
                 expect(res.statusCode).to.equal(404);
             });
     });
+    /*it('register only accepts POST', () => {
+        chai.request(server)
+            .post('/api/users/register')
+            .then((res) => {
+                logger(res.statusCode);
+                logger(res.data);
+                expect(res).to.have.status(404);
+                done();
+            });
+    });*/
 });
