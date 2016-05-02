@@ -13,7 +13,7 @@ const logger = bows('users.sagas');
 export function* doRegister(action) {
     try {
         var resp = yield call(axios.post, '/api/users/register', action);
-        if(resp.data.errors)
+        if(!resp.data || resp.data.errors)
             yield put({type: 'REGISTER_FAIL', errors: resp.data.errors});
         else{
             yield put({type: 'REGISTER_SUCCESS', msg: resp.data.msg});

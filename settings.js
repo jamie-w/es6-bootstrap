@@ -1,6 +1,6 @@
 var bows = require('bows');
 
-var settings = function(){
+var conf = function(){
     switch(process.env.NODE_ENV){
         case 'prod':
             return require('./conf/prod.js');
@@ -11,9 +11,11 @@ var settings = function(){
     }
 }();
 
-var conf = {
-    API_ROOT: settings.api_url
-}
-bows('settings')(conf);
+var settings = {
+    API_ROOT: conf.api_url,
+    PORT: conf.port ? conf.port : 3000
 
-module.exports = conf;
+}
+bows('settings')(settings);
+
+module.exports = settings;

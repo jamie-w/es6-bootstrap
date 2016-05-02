@@ -34,6 +34,7 @@ router.post('/register', co.wrap(function*(req, res){
         params: newUser
     });
     res.json(response.data);
+    done();
 }));
 
 router.post('/login', co.wrap(function*(req, res){
@@ -55,6 +56,7 @@ router.post('/login', co.wrap(function*(req, res){
         res.json({
             errors: 'User not found'
         });
+    done();
 }));
 
 module.exports = router;

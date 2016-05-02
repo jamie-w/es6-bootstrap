@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "My starting point for future projects",
   "scripts": {
-    "dev": "NODE_ENV=dev nodemon --harmony server.js",
-    "prod": "NODE_ENV=prod nodemon --harmony server.js",
+    "dev": "NODE_ENV=dev nodemon --harmony app.js",
+    "prod": "NODE_ENV=prod nodemon --harmony app.js",
     "lint": "eslint .",
-    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require test/test-server.js",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
     "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
     "json-server": "^0.8.9",

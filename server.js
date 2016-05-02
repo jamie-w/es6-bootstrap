@@ -1,4 +1,5 @@
-var app = require('express')();
+require('babel-polyfill');
+var server = require('express')();
 var webpackDevMiddleware = require("webpack-dev-middleware");
 var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpack = require('webpack');
@@ -15,7 +16,7 @@ var logger = bows("The server");
 
 
 // browser hot reloading
-app.use(webpackDevMiddleware(compiler, {
+server.use(webpackDevMiddleware(compiler, {
     hot: true,
     filename: 'bundle.js',
     publicPath: '/static/',
@@ -26,27 +27,25 @@ app.use(webpackDevMiddleware(compiler, {
     }
 }));
 
-app.use(webpackHotMiddleware(compiler, {
+server.use(webpackHotMiddleware(compiler, {
     log: console.log,
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000,
 }));
 
 // to parse post requests
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({
     extended:true
 }));
 
 // divert api requests
-app.use('/api', require('./api/routes'));
+server.use('/api', require('./api/routes'));
 
-// create the react app
-app.get('*', function (req, res) {
+// create the react server
+server.get('*', function (req, res) {
     res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-// open up to the world
-var server = app.listen(3000, function () {
-    console.log('Example app listening at http://localhost:3000');
-});
+
+module.exports = server;
