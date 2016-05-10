@@ -1,17 +1,30 @@
 import chai, {expect} from 'chai';
-import server from '../../server';
 import bows from 'bows';
+import sinon from 'sinon';
+
+import api from '../../api/api';
+import userViews from '../../api/users/views';
 
 var logger = bows('test.users.api');
 
 describe('users api', () => {
     it('pings /users', () => {
-        chai.request(server)
-            .get('/api/users')
-            .end((err, res) => {
-                expect(err).to.be.null;
-                expect(res.statusCode).to.equal(404);
-            });
+        var req = {
+            body: {
+                username: 'foo',
+                password: 'bar'
+            }
+        }
+        var apiStub = sinon.stub(api, 'async');
+        apiStub
+            .onCall({url: '/users?username=foo', method:'get'})
+            .returns({data: { username: 'foo'}});
+        var view = userViews.register(req);
+        logger(view);
+        logger(view.next(req));
+        logger(view.next(apiStub));
+
+        //expect(1).to.equal(0);
     });
     /*it('register only accepts POST', () => {
         chai.request(server)

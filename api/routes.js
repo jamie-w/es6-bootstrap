@@ -1,8 +1,8 @@
 var router = require('express').Router();
 var path = require('path');
 
-router.use('/users', require('./users'));
-router.use('/chats', require('./chats'));
+router.use('/users', require('./users/urls'));
+router.use('/chats', require('./chats/urls'));
 
 router.get('/', function(req, res){
     if(req.xhr)
