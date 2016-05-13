@@ -16,16 +16,7 @@ var ApiCall = function(){
 ApiCall.prototype = {
     constructor: ApiCall,
     error: false,
-    cb: function(resp){
-        logger("Hello callback");
-        if(resp.data.errors)
-            logger("Api call failed", resp.data.errors);
-        else
-            logger("Successful api call!", resp);
-
-        return this.res.json(resp.data);
-    },
-    async: function*(params){
+    async: function(params){
         var self = this;
         self._getParams(params);
         self._validate();
@@ -56,14 +47,6 @@ ApiCall.prototype = {
             this.error = GENERIC_ERROR;
         }
     }
-}
-
-function *apiCall(url, method, params){
-    var url = settings.API_ROOT + url;
-    logger('doing apiCall', url);
-    yield axios[method](url,params)
-        .then(function(resp){return resp;})
-        .catch(function(resp){return resp;});
 }
 
 module.exports = (new ApiCall);

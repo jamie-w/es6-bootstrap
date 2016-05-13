@@ -17,6 +17,7 @@ var views = {
             url: '/users?username='+newUser.username,
             method: 'get',
         });
+
         if(exists.data.length)
             return res.json({errors:'User already exists'});
 
@@ -25,7 +26,7 @@ var views = {
             method: 'post',
             params: newUser
         });
-        res.json(response.data);
+        return res.json(response.data);
     },
     login: function*(req, res){
         var userFound = false,
@@ -46,6 +47,7 @@ var views = {
             res.json({
                 errors: 'User not found'
             });
+        done();
     }
 };
 

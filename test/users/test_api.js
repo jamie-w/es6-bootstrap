@@ -7,33 +7,80 @@ import userViews from '../../api/users/views';
 
 var logger = bows('test.users.api');
 
-describe('users api', () => {
-    it('pings /users', () => {
-        var req = {
-            body: {
-                username: 'foo',
-                password: 'bar'
-            }
-        }
-        var apiStub = sinon.stub(api, 'async');
-        apiStub
-            .onCall({url: '/users?username=foo', method:'get'})
-            .returns({data: { username: 'foo'}});
-        var view = userViews.register(req);
-        logger(view);
-        logger(view.next(req));
-        logger(view.next(apiStub));
+describe('registers a user', () => {
 
-        //expect(1).to.equal(0);
+    // assign some generic re-usable variables
+    let apiStub = sinon.stub(api, 'async'),
+        res = { json: data => data },
+        username = 'foo',
+        password = 'bar',
+        req = { body: { username, password }},
+        newUser = { username, password };
+
+    // reset the stubbing before each run
+    beforeEach(()=> {
+        apiStub.restore();
     });
-    /*it('register only accepts POST', () => {
-        chai.request(server)
-            .post('/api/users/register')
-            .then((res) => {
-                logger(res.statusCode);
-                logger(res.data);
-                expect(res).to.have.status(404);
-                done();
-            });
-    });*/
+
+    // the flow if the user already exists
+    it('already exists', function(){
+        var userExists = {
+                data: [newUser]
+            },
+            getUserExists = {
+                req: {
+                    url: '/users?username='+newUser.username,
+                    method: 'get',
+                },
+                resp: [newUser]
+            };
+
+        // only api call - checking user already exists
+        // (spoiler: they do)
+        apiStub.withArgs(getUserExists.req).returns(getUserExists.resp);
+
+        var view = userViews.register(req, res);
+        view.next();
+        expect(
+            view.next(userExists).value
+        ).to.deep.equal(
+            { errors: 'User already exists' }
+        )
+    });
+
+    it('is successful', function(){
+        var userNotFound = { data: [] },
+            registerSent = { data: [newUser]},
+            getUserDNE= {
+                req: {
+                    url: '/users?username='+newUser.username,
+                    method: 'get',
+                },
+                resp: []
+            },
+            postUser= {
+                req: {
+                    url: '/users/',
+                    method: 'post',
+                    params: newUser
+                },
+                resp: [newUser]
+            };
+
+        // first api call, checking user exists
+        apiStub.withArgs(getUserDNE.req).returns(getUserDNE.resp);
+
+        // second api call, posting the user
+        apiStub.withArgs(postUser.req).returns(postUser.resp);
+
+        var view = userViews.register(req, res);
+
+        view.next();
+        view.next(userNotFound);
+        expect(
+            view.next(registerSent).value
+        ).to.deep.equal(
+            [ newUser, ]
+        )
+    });
 });
