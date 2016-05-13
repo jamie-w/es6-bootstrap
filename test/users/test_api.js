@@ -7,7 +7,7 @@ import userViews from '../../api/users/views';
 
 var logger = bows('test.users.api');
 
-describe('registers a user', () => {
+describe('register a user', () => {
 
     // assign some generic re-usable variables
     let apiStub = sinon.stub(api, 'async'),
@@ -24,10 +24,7 @@ describe('registers a user', () => {
 
     // the flow if the user already exists
     it('already exists', function(){
-        var userExists = {
-                data: [newUser]
-            },
-            getUserExists = {
+        var getUserExists = {
                 req: {
                     url: '/users?username='+newUser.username,
                     method: 'get',
@@ -42,16 +39,14 @@ describe('registers a user', () => {
         var view = userViews.register(req, res);
         view.next();
         expect(
-            view.next(userExists).value
+            view.next({data: getUserExists.resp}).value
         ).to.deep.equal(
             { errors: 'User already exists' }
         )
     });
 
     it('is successful', function(){
-        var userNotFound = { data: [] },
-            registerSent = { data: [newUser]},
-            getUserDNE= {
+        var getUserDNE= {
                 req: {
                     url: '/users?username='+newUser.username,
                     method: 'get',
@@ -76,9 +71,9 @@ describe('registers a user', () => {
         var view = userViews.register(req, res);
 
         view.next();
-        view.next(userNotFound);
+        view.next({data: getUserDNE.resp});
         expect(
-            view.next(registerSent).value
+            view.next({data: postUser.resp}).value
         ).to.deep.equal(
             [ newUser, ]
         )
