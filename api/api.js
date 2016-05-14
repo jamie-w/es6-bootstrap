@@ -29,7 +29,7 @@ ApiCall.prototype = {
                     resolve(res);
                 })
                 .catch(function(res){
-                    resolve(res);
+                    reject(res);
                 });
         });
     },
