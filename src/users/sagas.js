@@ -1,6 +1,6 @@
-import axios from 'axios';
 import {takeEvery, takeLatest} from 'redux-saga';
 import {call, put, fork} from 'redux-saga/effects';
+import axios from 'axios';
 
 import bows from 'bows';
 
@@ -13,13 +13,16 @@ const logger = bows('users.sagas');
 export function* doRegister(action) {
     try {
         var resp = yield call(axios.post, '/api/users/register', action);
-        if(!resp.data || resp.data.errors)
+        if(!resp.data || resp.data.errors){
+            logger(resp.data.errors);
             yield put({type: 'REGISTER_FAIL', errors: resp.data.errors});
+        }
         else{
             yield put({type: 'REGISTER_SUCCESS', msg: resp.data.msg});
             yield put({type: 'ADD_USER', user: resp.data});
         }
     } catch(error) {
+        logger(error);
         yield put({type: 'REGISTER_FAIL', error});
     }
 }
@@ -38,10 +41,10 @@ export function* doLogin(action){
 }
 
 export function* watchLogin(){
-    yield* takeEvery('LOGIN', doLogin)
+    yield* takeLatest('LOGIN', doLogin)
 }
 export function* watchRegister(){
-    yield* takeEvery('REGISTER', doRegister);
+    yield* takeLatest('REGISTER', doRegister);
 }
 
 export default function* root(){

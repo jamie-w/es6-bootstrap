@@ -9,29 +9,31 @@ var bows = require('bows');
 var bodyParser = require('body-parser');
 
 var settings = require('./settings');
+var logger = bows("server");
 
 // Some important variables
 var compiler = webpack(webpackConfig);
-var logger = bows("The server");
 
+if(settings.DEBUG) { // test and dev
 
-// browser hot reloading
-server.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    filename: 'bundle.js',
-    publicPath: '/static/',
-    historyApiFallback: true,
-    stats: {
-        colors: true,
-        chunkModules: false
-    }
-}));
+    // browser hot reloading
+    server.use(webpackDevMiddleware(compiler, {
+        hot: true,
+        filename: 'bundle.js',
+        publicPath: '/static/',
+        historyApiFallback: true,
+        stats: {
+            colors: true,
+            chunkModules: false
+        }
+    }));
 
-server.use(webpackHotMiddleware(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000,
-}));
+    server.use(webpackHotMiddleware(compiler, {
+        log: console.log,
+        path: '/__webpack_hmr',
+        heartbeat: 10 * 1000,
+    }));
+}
 
 // to parse post requests
 server.use(bodyParser.json());

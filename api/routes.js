@@ -1,9 +1,12 @@
 var router = require('express').Router();
 var path = require('path');
+var bows = require('bows');
+
+var logger = bows('api.routes');
 
 router.use(function(req, res, next){
     if(!req.xhr){
-        res.sendFile(path.join(__dirname+'/api.html'));
+        return res.sendFile(path.join(__dirname+'/api.html'));
     }
     else{
         next();

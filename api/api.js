@@ -28,9 +28,6 @@ ApiCall.prototype = {
                 .then(function(res){
                     resolve(res);
                 })
-                .catch(function(res){
-                    reject(res);
-                });
         });
     },
     _getParams: function(params){

@@ -13,8 +13,8 @@ var conf = function(){
 
 var settings = {
     API_ROOT: conf.api_url,
-    PORT: conf.port ? conf.port : 3000
-
+    PORT: conf.port ? conf.port : 3000,
+    DEBUG: conf.debug ? conf.debug : false
 }
 bows('settings')(settings);
 

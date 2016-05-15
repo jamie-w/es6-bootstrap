@@ -4,6 +4,7 @@ import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {Router, Route, Link, browserHistory} from 'react-router';
 import createSagaMiddleware from 'redux-saga';
+import axios from 'axios';
 
 import DevTools from './devtools';
 
@@ -20,6 +21,10 @@ const reducers = combineReducers({
     users: userReducers,
     chats: chatReducers
 });
+
+axios.defaults.headers = {
+    'X-Requested-With': 'XMLHttpRequest',
+};
 
 let store = createStore(
     reducers,
