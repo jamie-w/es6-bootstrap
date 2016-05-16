@@ -1,8 +1,7 @@
 import chai, {expect} from 'chai';
-import server from '../../server';
 import bows from 'bows';
 
-import userReducer from '../../src/users/reducers';
+import userReducer from '../reducers';
 
 var logger = bows('test.users.states');
 

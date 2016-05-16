@@ -14,8 +14,8 @@ var logger = bows("server");
 // Some important variables
 var compiler = webpack(webpackConfig);
 
-if(settings.DEBUG) { // test and dev
-
+if(settings.DEBUG) // test and dev
+{
     // browser hot reloading
     server.use(webpackDevMiddleware(compiler, {
         hot: true,
@@ -27,7 +27,6 @@ if(settings.DEBUG) { // test and dev
             chunkModules: false
         }
     }));
-
     server.use(webpackHotMiddleware(compiler, {
         log: console.log,
         path: '/__webpack_hmr',

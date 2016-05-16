@@ -6,8 +6,10 @@
     "dev": "NODE_ENV=dev nodemon --harmony app.js",
     "prod": "NODE_ENV=prod nodemon --harmony app.js",
     "lint": "eslint .",
-    "test": "NODE_ENV=test mocha --harmony-generators --compilers js:babel-core/register --recursive --require test/test-server.js",
-    "test:watch": "npm run test -- --watch"
+    "test_client": "NODE_ENV=test mocha src/**/*.test.js --harmony-generators --compilers js:babel-core/register --recursive --require test-server.js",
+    "test_client:watch": "npm run test_client -- --watch",
+    "test_api": "NODE_ENV=test mocha api/**/*.test.js --harmony-generators --compilers js:babel-core/register --recursive --require test-server.js",
+    "test_api:watch": "npm run test_api -- --watch"
   },
   "repository": {
     "type": "git",

@@ -9,7 +9,7 @@ const logger = bows('users.test_sagas');
 import {
     doLogin,
     doRegister
-} from '../../src/users/sagas';
+} from '../sagas';
 
 describe("user sagas", () => {
     let action = {
