@@ -12,54 +12,53 @@ describe('register a user', () => {
         username = 'foo',
         password = 'bar',
         req = { body: { username, password }},
-        newUser = { username, password };
+        newUser = { username, password },
+        apiResponse = undefined,
+        finalResponse = undefined;
 
 
     // the flow if the user already exists
     it('already exists', function(){
-        var getUserExists = {
-                req: {
-                    url: '/users?username='+newUser.username,
-                    method: 'get',
-                },
-                resp: [newUser]
-            };
-
+        // Get the view as a generator
         var view = userViews.register(req, res);
+
+        // initialize the view
         view.next();
+
+        // The user already exists in the system
+        apiResponse = {data: [newUser]};
+        finalResponse = view.next(apiResponse);
         expect(
-            view.next({data: getUserExists.resp}).value
+            finalResponse.value
         ).to.deep.equal(
             { errors: 'User already exists' }
         )
+
+        // the generator (view) should be done now
+        expect(finalResponse.done).to.equal(true);
     });
 
     it('is successful', function(){
-        var getUserDNE= {
-                req: {
-                    url: '/users?username='+newUser.username,
-                    method: 'get',
-                },
-                resp: []
-            },
-            postUser= {
-                req: {
-                    url: '/users/',
-                    method: 'post',
-                    params: newUser
-                },
-                resp: [newUser]
-            };
-
+        // Get the view as a generator
         var view = userViews.register(req, res);
 
+        // initialize the view
         view.next();
-        view.next({data: getUserDNE.resp});
 
+        // the user has not been found
+        var apiResponse = {data: []};
+        view.next(apiResponse);
+
+        // assuming the api will have a successful response
+        apiResponse = {data: [newUser]};
+        finalResponse = view.next(apiResponse);
         expect(
-            view.next({data: postUser.resp}).value
+            finalResponse.value
         ).to.deep.equal(
             [ newUser, ]
-        )
+        );
+
+        // the generator (view) should be done now
+        expect(finalResponse.done).to.equal(true);
     });
 });
