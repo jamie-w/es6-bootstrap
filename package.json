@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "My starting point for future projects",
   "scripts": {
-    "dev": "NODE_ENV=dev nodemon app.js",
-    "prod": "NODE_ENV=prod nodemon app.js",
+    "dev": "NODE_ENV=dev nodemon server.js",
+    "prod": "NODE_ENV=prod nodemon server.js",
     "lint": "eslint .",
-    "test_client": "NODE_ENV=test mocha src/**/*.tests.js --compilers js:babel-core/register --recursive --require test-server.js",
-    "test_client:watch": "npm run test_client -- --watch",
-    "test_api": "NODE_ENV=test mocha api/**/*tests.js --compilers js:babel-core/register --recursive --require test-server.js",
-    "test_api:watch": "npm run test_api -- --watch"
+    "client_tests": "src/**/*.tests.js",
+    "api_tests": "",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require settings.js",
+    "test:client": "npm run test src/**/*.tests.js",
+    "test:client:watch": "npm run test src/**/*.tests.js  -- --watch",
+    "test:api": "npm run test api/**/*tests.js",
+    "test:api:watch": "npm run test api/**/*tests.js  -- --watch"
   },
   "repository": {
     "type": "git",
