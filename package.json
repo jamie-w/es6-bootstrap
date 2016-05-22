@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My starting point for future projects",
   "scripts": {
-    "dev": "NODE_ENV=dev nodemon --harmony app.js",
+    "dev": "NODE_ENV=dev nodemon app.js",
     "prod": "NODE_ENV=prod nodemon app.js",
     "lint": "eslint .",
     "test_client": "NODE_ENV=test mocha src/**/*.tests.js --compilers js:babel-core/register --recursive --require test-server.js",

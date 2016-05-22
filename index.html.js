@@ -1,6 +1,3 @@
-var React = require('react'),
-    DOM = React.DOM, div = DOM.div;
-
 module.exports = function render(params){
     return `
         <!doctype html>
