@@ -16,7 +16,7 @@ class App extends React.Component {
   render() {
     return (this.props.currUser ?
         <div>
-            <h1>Welcome {this.props.currUser}</h1>
+            <h1>Welcome {this.props.currUser.username}</h1>
             <p><Logout /></p>
         </div> :
         <div>

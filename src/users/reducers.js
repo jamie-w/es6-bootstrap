@@ -9,7 +9,7 @@ export default (state=[], action) => {
         case 'LOGIN_FAIL':
             return {...state, errors: {login: action.errors}, msgs:false};
         case 'LOGIN_SUCCESS':
-            return {...state, errors: false, msgs: false, currUser: action.username};
+            return {...state, errors: false, msgs: false, currUser: action.user};
         case 'LOGOUT':
             return logout(state);
         case 'ADD_USER':

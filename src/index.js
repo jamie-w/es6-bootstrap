@@ -1,3 +1,4 @@
+import GLOBALS from './globals';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -10,7 +11,6 @@ import DevTools from './devtools';
 
 import store from './store';
 
-const GLOBALS = window.__GLOBALS__;
 
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest',

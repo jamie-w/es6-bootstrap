@@ -34,8 +34,7 @@ export function* doLogin(action){
         if(resp.data.errors)
             yield put({type: 'LOGIN_FAIL', errors: resp.data.errors});
         else {
-            localStorage.setItem('currUser', JSON.stringify(resp.data.user.username));
-            yield put({type: 'LOGIN_SUCCESS', username: resp.data.user.username});
+            yield put({type: 'LOGIN_SUCCESS', user: resp.data.user});
         }
     } catch(error) {
         yield put({type: 'LOGIN_FAIL', error});

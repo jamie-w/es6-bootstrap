@@ -8,6 +8,7 @@ var path = require('path');
 var bows = require('bows');
 var csrf = require('csurf');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var settings = require('./settings');
 var logger = bows("app");
@@ -36,8 +37,17 @@ if(settings.DEBUG) // test and dev
 }
 
 // to parse the cookies
-app.use(require('cookie-parser')());
-app.use(csrf({cookie:true}));
+//app.use(require('cookie-parser')());
+app.use(session({
+    secret: 'Secret mission session!',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        httpOnly: true,
+        secure: !settings.DEBUG
+    }
+}));
+app.use(csrf());
 
 // to parse post requests
 app.use(bodyParser.json());
@@ -52,7 +62,8 @@ app.use('/api', require('./api/routes'));
 app.get('*', function (req, res) {
     var render = require('./index.html');
     var params = {
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        currUser: req.session['currUser']
     };
     return res.send(render(params));
 });

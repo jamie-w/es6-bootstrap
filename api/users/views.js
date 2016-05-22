@@ -1,9 +1,17 @@
+var settings = require('../../settings');
 var bows = require('bows');
 
 // api utils for querying
 var api = require('../api');
 
 var logger = bows('api.users');
+
+function buildUser(user){
+    return {
+        id: user.id,
+        username: user.username,
+    }
+}
 
 var views = {
     register: function*(req, res){
@@ -39,14 +47,18 @@ var views = {
             method: 'get',
         });
 
-        if(response.data.length && response.data[0].password == password)
+        if(response.data.length && response.data[0].password == password) {
+            var user = buildUser(response.data[0]);
+            // set user for the next time they login
+            req.session.currUser = user;
             res.json({
-                user: response.data[0]
+                user: user
             });
-        else
+        } else {
             res.json({
                 errors: 'User not found'
             });
+        }
         done();
     }
 };

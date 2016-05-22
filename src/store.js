@@ -1,3 +1,4 @@
+import GLOBALS from './globals';
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -15,10 +16,15 @@ const reducers = combineReducers({
     chats: chatReducers
 });
 
+import bows from 'bows';
+
+const logger = bows('store');
+logger(GLOBALS);
+
 const initialState = {
     users: {
         userlist: [],
-        currUser: JSON.parse(localStorage.getItem('currUser')),
+        currUser: GLOBALS.currUser,
         errors: false,
         msgs: false
     }
