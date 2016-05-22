@@ -1,4 +1,4 @@
-JW-Framwork
+JW-Framework
 ===========
 
 Purpose
@@ -19,7 +19,7 @@ most testable components. Everything is mocked with generators!
 Main Components
 ---------------
 
-*Core*
+**Core**
 
 - ExpressJS (https://github.com/expressjs/express)
 - React (https://github.com/facebook/react)
@@ -28,7 +28,7 @@ Main Components
 - axios (https://github.com/chaijs/chai)
 - csurf (https://github.com/expressjs/csurf)
 
-*Testing*
+**Testing**
 
 - mocha (https://github.com/mochajs/mocha)
 - chai (https://github.com/chaijs/chai)
