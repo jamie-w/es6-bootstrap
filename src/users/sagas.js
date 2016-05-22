@@ -33,8 +33,10 @@ export function* doLogin(action){
         var resp = yield call(axios.post, '/api/users/login', action);
         if(resp.data.errors)
             yield put({type: 'LOGIN_FAIL', errors: resp.data.errors});
-        else
+        else {
+            localStorage.setItem('currUser', JSON.stringify(resp.data.user.username));
             yield put({type: 'LOGIN_SUCCESS', username: resp.data.user.username});
+        }
     } catch(error) {
         yield put({type: 'LOGIN_FAIL', error});
     }

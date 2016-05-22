@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 var path = require('path');
 var bows = require('bows');
+var csrf = require('csurf');
 var bodyParser = require('body-parser');
 
 var settings = require('./settings');
@@ -34,6 +35,10 @@ if(settings.DEBUG) // test and dev
     }));
 }
 
+// to parse the cookies
+server.use(require('cookie-parser')());
+server.use(csrf({cookie:true}));
+
 // to parse post requests
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({
@@ -45,7 +50,11 @@ server.use('/api', require('./api/routes'));
 
 // create the react server
 server.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname+'/index.html'));
+    var render = require('./index.html');
+    var params = {
+        csrfToken: req.csrfToken()
+    };
+    return res.send(render(params));
 });
 
 

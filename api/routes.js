@@ -4,6 +4,7 @@ var bows = require('bows');
 
 var logger = bows('api.routes');
 
+// validate request
 router.use(function(req, res, next){
     if(!req.xhr){
         return res.sendFile(path.join(__dirname+'/api.html'));

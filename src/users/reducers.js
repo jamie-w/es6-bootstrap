@@ -1,4 +1,4 @@
-import {register, login} from './actions';
+import {logout} from './actions';
 
 export default (state=[], action) => {
     switch(action.type){
@@ -10,6 +10,8 @@ export default (state=[], action) => {
             return {...state, errors: {login: action.errors}, msgs:false};
         case 'LOGIN_SUCCESS':
             return {...state, errors: false, msgs: false, currUser: action.username};
+        case 'LOGOUT':
+            return logout(state);
         case 'ADD_USER':
             return {...state,
                 userlist:[
