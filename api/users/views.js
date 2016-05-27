@@ -50,7 +50,7 @@ var views = {
         if(response.data.length && response.data[0].password == password) {
             var user = buildUser(response.data[0]);
             // set user for the next time they login
-            req.session.currUser = user;
+            if(req.session) req.session.currUser = user;
             res.json({
                 user: user
             });

@@ -1,7 +1,5 @@
 require('babel-polyfill');
 var app = require('express')();
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 var path = require('path');
@@ -19,6 +17,8 @@ var compiler = webpack(webpackConfig);
 if(settings.DEBUG) // test and dev
 {
     // browser hot reloading
+    var webpackDevMiddleware = require("webpack-dev-middleware");
+    var webpackHotMiddleware = require("webpack-hot-middleware");
     app.use(webpackDevMiddleware(compiler, {
         hot: true,
         filename: 'bundle.js',
@@ -37,11 +37,11 @@ if(settings.DEBUG) // test and dev
 }
 
 // to parse the cookies
-//app.use(require('cookie-parser')());
+// app.use(require('cookie-parser')());
 app.use(session({
     secret: 'Secret mission session!',
-    saveUninitialized: false,
-    resave: false,
+    saveUninitialized: true,
+    resave: true,
     cookie: {
         httpOnly: true,
         secure: !settings.DEBUG
