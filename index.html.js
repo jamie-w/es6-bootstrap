@@ -12,6 +12,5 @@ module.exports = function render(params){
                 </script>
                 <script src="/static/bundle.js"></script>
             </body>
-        </html>
-    `
+        </html>`
 };

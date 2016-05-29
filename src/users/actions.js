@@ -7,13 +7,6 @@ let lastUserId = 0;
     Not currently used because of redux-saga development
 */
 
-export const logout = (state) => {
-    localStorage.removeItem('currUser');
-    return Object.assign({}, state, {
-        currUser: false
-    });
-}
-
 export const register = (state, action) => {
 
     let userFound = false, registerErrorMsg = false,
