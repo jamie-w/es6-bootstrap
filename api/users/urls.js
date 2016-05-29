@@ -16,4 +16,6 @@ router.post('/register', co.wrap(userViews.register));
 
 router.post('/login', co.wrap(userViews.login));
 
+router.post('/logout', userViews.logout);
+
 module.exports = router;

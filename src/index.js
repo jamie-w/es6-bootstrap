@@ -5,11 +5,13 @@ import {Provider} from 'react-redux';
 import {Router, Route, Link, browserHistory} from 'react-router';
 import axios from 'axios';
 
-import App from './app';
+import store from './store';
+
 import NotFound from './notfound';
 import DevTools from './devtools';
 
-import store from './store';
+import App from './app';
+import Account from './users/components/account';
 
 
 axios.defaults.headers = {
@@ -22,6 +24,7 @@ ReactDOM.render(
         <div>
             <Router history={browserHistory}>
                 <Route path="/" component={App}/>
+                <Route path="/account" component={Account}/>
                 <Route path="*" component={NotFound}/>
             </Router>
             <DevTools/>

@@ -60,6 +60,10 @@ var views = {
             });
         }
         done();
+    },
+    logout: function(req, res){
+        delete req.session.currUser;
+        res.json({done: true});
     }
 };
 

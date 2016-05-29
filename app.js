@@ -7,6 +7,7 @@ var bows = require('bows');
 var csrf = require('csurf');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 var settings = require('./settings');
 var logger = bows("app");
@@ -47,7 +48,8 @@ app.use(session({
         secure: !settings.DEBUG
     }
 }));
-app.use(csrf());
+app.use(cookieParser());
+app.use(csrf({cookie:true}));
 
 // to parse post requests
 app.use(bodyParser.json());

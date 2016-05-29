@@ -41,16 +41,32 @@ export function* doLogin(action){
     }
 }
 
+export function* doLogout(action){
+    try {
+        logger('in doLogout', action)
+        var resp = yield call(axios.post, '/api/users/logout', action);
+        yield put({type: 'LOGOUT_SUCCESS'});
+    } catch(error){
+
+    }
+}
+
 export function* watchLogin(){
     yield* takeLatest('LOGIN', doLogin)
 }
+
 export function* watchRegister(){
     yield* takeLatest('REGISTER', doRegister);
+}
+
+export function* watchLogout(){
+    yield* takeLatest('LOGOUT', doLogout);
 }
 
 export default function* root(){
     yield [
         fork(watchRegister),
         fork(watchLogin),
+        fork(watchLogout),
     ]
 }
