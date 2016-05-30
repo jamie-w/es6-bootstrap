@@ -3,15 +3,9 @@ var bows = require('bows');
 
 // api utils for querying
 var api = require('../api');
+var userMaps = require('./maps');
 
 var logger = bows('api.users');
-
-function buildUser(user){
-    return {
-        id: user.id,
-        username: user.username,
-    }
-}
 
 var views = {
     register: function*(req, res){
@@ -48,9 +42,9 @@ var views = {
         });
 
         if(response.data.length && response.data[0].password == password) {
-            var user = buildUser(response.data[0]);
-            // set user for the next time they login
-            if(req.session) req.session.currUser = user;
+            var user = userMaps.buildUser(response.data[0]);
+            var one_week = new Date(Date.now() + (24*60*60*1000*7));
+            res.cookie('currUser', user, one_week);
             res.json({
                 user: user
             });
@@ -62,7 +56,7 @@ var views = {
         done();
     },
     logout: function(req, res){
-        delete req.session.currUser;
+        res.clearCookie('currUser');
         res.json({done: true});
     }
 };

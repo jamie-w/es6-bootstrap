@@ -37,17 +37,21 @@ if(settings.DEBUG) // test and dev
     }));
 }
 
-// to parse the cookies
-// app.use(require('cookie-parser')());
+
+/*
+// Using session proved tenuous when dealing with
+// csrf requests. Cookies will be used for the
+// authentication and csrf requests.
 app.use(session({
     secret: 'Secret mission session!',
     saveUninitialized: true,
-    resave: true,
+    resave: false,
     cookie: {
         httpOnly: true,
-        secure: !settings.DEBUG
+        secure: !settings.DEBUG,
     }
 }));
+*/
 app.use(cookieParser());
 app.use(csrf({cookie:true}));
 
@@ -65,7 +69,7 @@ app.get('*', function (req, res) {
     var render = require('./index.html');
     var params = {
         csrfToken: req.csrfToken(),
-        currUser: req.session['currUser']
+        currUser: req.cookies['currUser']
     };
     return res.send(render(params));
 });

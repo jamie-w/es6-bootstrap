@@ -9,18 +9,18 @@ import bows from 'bows';
 const logger = bows('users.reducers');
 
 export default (state=[], action) => {
+    logger(action.type, action);
     switch(action.type){
         case 'REGISTER_FAIL':
             return {...state, errors: {register: action.errors}, msgs:false};
         case 'REGISTER_SUCCESS':
             return {...state, errors: false, msgs: {register: action.msg}};
         case 'ADD_NEXT_URL':
-            logger("hello ADD_NEXT_URL", action);
             return {...state, nextUrl: action.nextUrl};
         case 'LOGIN_FAIL':
             return {...state, errors: {login: action.errors}, msgs:false};
         case 'LOGIN_SUCCESS':
-            browserHistory.push(state.nextUrl);
+            browserHistory.push(state.nextUrl ? state.nextUrl : '/');
             return {...state, errors: false, msgs: false, currUser: action.user, nextUrl: false};
         case 'LOGOUT_SUCCESS':
             return {...state, currUser: false};

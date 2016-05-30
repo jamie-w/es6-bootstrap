@@ -15,6 +15,6 @@ router.use(function(req, res, next){
 });
 
 router.use('/users', require('./users/routes'));
-router.use('/chats', require('./chats/urls'));
+router.use('/chats', require('./chats/routes'));
 
 module.exports = router;
