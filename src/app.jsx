@@ -1,41 +1,37 @@
 import React from 'react';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import settings from '../settings';
+import Home from './home';
+import Account from './users/components/account';
 
-import Logout from './users/components/logout';
+import NotFound from './notfound';
+import DevTools from './devtools';
 
-const mapStateToProps = (state) => ({
-    currUser: state.users.currUser,
-    nextUrl: false
-});
-
-const mapDispatchToProps = (dispatch, action) => ({
-    addNextUrl: (nextUrl) => dispatch({
-        type: 'ADD_NEXT_URL', nextUrl
-    })
-})
-
-class App extends React.Component {
-  render() {
-    return (this.props.currUser ?
-        <div>
-            <h1>Welcome {this.props.currUser.username}</h1>
-            <p><Logout /></p>
-        </div> :
-        <div>
-            <Link
-                to={`/account`}
-                onClick={() => this.props.addNextUrl(
-                    this.props.routes[this.props.routes.length-1].path
-                )}
-            >Account</Link>
-        </div>
-    );
-  }
+class AppComponents extends React.Component {
+    render() {
+        return (<MuiThemeProvider muiTheme={getMuiTheme()}>
+            <Router history={browserHistory}>
+                <Route path="/" component={Home}/>
+                <Route path="/account" component={Account}/>
+                <Route path="*" component={NotFound}/>
+            </Router>
+        </MuiThemeProvider>);
+    }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+class App extends React.Component {
+    render(){
+        return (settings.DEBUG ?
+            <div>
+                <AppComponents/>
+                <DevTools/>
+            </div> :
+            <AppComponents/>
+        );
+    }
+}
+
+export default App

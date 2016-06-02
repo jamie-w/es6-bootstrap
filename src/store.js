@@ -23,7 +23,6 @@ logger(GLOBALS);
 
 const initialState = {
     users: {
-        userlist: [],
         currUser: GLOBALS.currUser,
         errors: false,
         msgs: false
