@@ -10,28 +10,25 @@ import Account from './users/components/account';
 import NotFound from './notfound';
 import DevTools from './devtools';
 
-class AppComponents extends React.Component {
-    render() {
-        return (<MuiThemeProvider muiTheme={getMuiTheme()}>
-            <Router history={browserHistory}>
-                <Route path="/" component={Home}/>
-                <Route path="/account" component={Account}/>
-                <Route path="*" component={NotFound}/>
-            </Router>
-        </MuiThemeProvider>);
-    }
-}
+import './master.scss';
 
-class App extends React.Component {
-    render(){
-        return (settings.DEBUG ?
-            <div>
-                <AppComponents/>
-                <DevTools/>
-            </div> :
-            <AppComponents/>
-        );
-    }
-}
+const AppComponents = () => (
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <Router history={browserHistory}>
+            <Route path="/" component={Home}/>
+            <Route path="/account" component={Account}/>
+            <Route path="*" component={NotFound}/>
+        </Router>
+    </MuiThemeProvider>
+);
+
+const App = () => (
+    settings.DEBUG ?
+    <div>
+        <AppComponents/>
+        <DevTools/>
+    </div> :
+    <AppComponents/>
+);
 
 export default App

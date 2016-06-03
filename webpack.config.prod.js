@@ -1,5 +1,7 @@
+
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
   entry: [
@@ -14,6 +16,7 @@ var config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('styles.css', {allChunks: false})
   ],
   resolve:{
         extensions: ['', '.js', '.jsx']
@@ -23,6 +26,12 @@ var config = {
             test: /\.scss$/,
             include: /src/,
             loader: "style!css!autoprefixer!sass"
+        },
+        {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract(
+                "style-loader",
+                "css-loader!autoprefixer-loader!sass-loader")
         },
         {
             test: /\.jsx?$/,

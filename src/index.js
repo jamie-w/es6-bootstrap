@@ -9,15 +9,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app';
 import store from './store';
 
-
 injectTapEventPlugin();
 
 axios.defaults.headers = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-Token': GLOBALS.csrfToken
 };
-
-
 
 ReactDOM.render(
     <Provider store={store}>
