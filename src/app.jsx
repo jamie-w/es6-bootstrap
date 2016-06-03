@@ -4,13 +4,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
 import settings from '../settings';
-import Home from './home';
+import Home from './main/components/home';
 import Account from './users/components/account';
 
 import NotFound from './notfound';
 import DevTools from './devtools';
-
-import './master.scss';
 
 const AppComponents = () => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>

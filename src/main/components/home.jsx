@@ -3,7 +3,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-import Logout from './users/components/logout';
+import Logout from '../../users/components/logout';
+
+import {Grid, Row, Col} from 'react-flexbox-grid';
 
 const mapStateToProps = (state) => ({
     currUser: state.users.currUser,

@@ -5,23 +5,21 @@ import Login from './login';
 import Register from './register';
 import Logout from './logout';
 
+import {Grid, Row, Col} from 'react-flexbox-grid';
+
 const renderStateToProps = state => ({
     currUser: state.users.currUser
 })
 
 class Account extends React.Component{
-
    render(){
         return this.props.currUser ? (
-                <div>
+                <Grid>
                     Hello <b>{this.props.currUser.username}</b>
                     <Logout />
-                </div>
+                </Grid>
             ) :
-            (<div>
-                <Login />
-                <Register />
-            </div>);
+            (<div><Login/><Register/></div>);
    }
 }
 

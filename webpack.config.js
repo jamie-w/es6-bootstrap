@@ -19,16 +19,40 @@ var config = {
         extensions: ['', '.js', '.jsx']
   },
   module: {
-        loaders: [{
-            test: /\.scss$/,
-            include: /src/,
-            loader: "style!css!autoprefixer!sass"
+        loaders: [
+        // will need something like this for all external css libs
+        {
+          test: /\.css$/,
+          loader: 'style!css?modules',
+          include: /flexboxgrid/,
         },
+        // gather all js and jsx files + transpile them with babel
         {
             test: /\.jsx?$/,
             loaders: ['react-hot', 'babel'],
             include: path.join(__dirname, 'src')
-        }]
+        },
+        // gather scss files for ?global? classes
+        {
+            test: /\.scss$/,
+            include: /src/,
+            loaders: [
+                'style',
+                'css',
+                'autoprefixer?browsers=last 3 versions',
+                'sass?outputStyle=expanded'
+            ]
+        },
+        // images!
+        {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loaders: [
+                'url?limit=8192',
+                'img'
+            ]
+        },
+
+        ]
     }
 };
 module.exports = config;
