@@ -1,7 +1,5 @@
 import React from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Router, Route, Link, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
 
 import settings from '../settings';
 import Home from './main/components/home';
@@ -11,22 +9,25 @@ import NotFound from './notfound';
 import DevTools from './devtools';
 
 const AppComponents = () => (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Router history={browserHistory}>
-            <Route path="/" component={Home}/>
-            <Route path="/account" component={Account}/>
-            <Route path="*" component={NotFound}/>
-        </Router>
-    </MuiThemeProvider>
+    <Router history={browserHistory}>
+        <Route path="/" component={Home}>
+            <IndexRoute/>
+            <Route path="account" component={Account}/>
+            <Route path="*" component={NotFound} status={404}/>
+        </Route>
+    </Router>
 );
 
-const App = () => (
-    settings.DEBUG ?
-    <div>
+class App extends React.Component{
+    render() {
+        return settings.DEBUG ?
+        // debug type app
+        <div>
+            <AppComponents/>
+        </div> :
+        // production app
         <AppComponents/>
-        <DevTools/>
-    </div> :
-    <AppComponents/>
-);
+    }
+};
 
 export default App

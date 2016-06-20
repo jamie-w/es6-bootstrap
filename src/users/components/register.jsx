@@ -2,7 +2,6 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import Paper from 'material-ui/paper';
 import styles from '../../styles';
 
 const mapStateToProps = (state) => ({
@@ -19,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Register extends React.Component{
     render(){
         return (
-            <Paper zDepth={1} style={styles.inlinePaper}>
+            <div>
                 <h2>Register</h2>
                 <p>
                     <input ref="username" placeholder="Username"/>
@@ -35,7 +34,7 @@ class Register extends React.Component{
                 </button>
                 <p>{this.props.successMsg}</p>
                 <p>{this.props.errorMsg}</p>
-            </Paper>
+            </div>
         );
     }
 }
