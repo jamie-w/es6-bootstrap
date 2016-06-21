@@ -1,6 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {Button} from 'react-bootstrap';
 
 import styles from '../../styles';
 
@@ -26,12 +27,12 @@ class Login extends React.Component {
                 <p>
                     <input ref="password" type="password" placeholder="Password"/>
                 </p>
-                <button onClick={() => this.props.onLoginClick(
+                <Button bsStyle="primary" onClick={() => this.props.onLoginClick(
                     this.refs.username.value,
                     this.refs.password.value
                 )}>
                    Login
-                </button>
+                </Button>
                 <p>{this.props.errorMsg}</p>
             </div>
         );

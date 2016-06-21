@@ -1,6 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {Button} from 'react-bootstrap';
 
 import styles from '../../styles';
 
@@ -26,12 +27,12 @@ class Register extends React.Component{
                 <p>
                     <input ref="password" type="password" placeholder="Password"/>
                 </p>
-                <button onClick={() => this.props.onRegisterClick(
+                <Button bsStyle="primary" onClick={() => this.props.onRegisterClick(
                     this.refs.username.value,
                     this.refs.password.value
                 )}>
                     Register
-                </button>
+                </Button>
                 <p>{this.props.successMsg}</p>
                 <p>{this.props.errorMsg}</p>
             </div>

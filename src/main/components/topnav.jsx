@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
 import {Navbar,Nav} from 'react-bootstrap';
@@ -23,7 +23,7 @@ class TopNav extends React.Component {
             <Navbar inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/">JWJS</a>
+                        <Link to="/">JWJS</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>

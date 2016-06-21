@@ -7,6 +7,14 @@ module.exports = function render(params){
     </head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">
+
+    <style>
+        html {
+            min-height:100%;
+            position: relative;
+        }
+    </style>
     <body>
         <div id='root'></div>
         <script>window.__GLOBALS__ = ${JSON.stringify(params)}</script>
