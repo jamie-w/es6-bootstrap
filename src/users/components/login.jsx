@@ -27,7 +27,7 @@ class Login extends React.Component {
                 <p>
                     <input ref="password" type="password" placeholder="Password"/>
                 </p>
-                <Button bsStyle="primary" onClick={() => this.props.onLoginClick(
+                <Button onClick={() => this.props.onLoginClick(
                     this.refs.username.value,
                     this.refs.password.value
                 )}>

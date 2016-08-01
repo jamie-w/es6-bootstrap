@@ -8,6 +8,7 @@ var csrf = require('csurf');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var passport = require('passport');
 
 var settings = require('./settings');
 var logger = bows("app");
@@ -52,6 +53,9 @@ app.use(session({
     }
 }));
 */
+
+// Seems we have to use cookies because the session is
+// server side and loses the csrf on sequential requests
 app.use(cookieParser());
 app.use(csrf({cookie:true}));
 
@@ -60,6 +64,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+
+// divert authentication requests
+app.use(passport.initialize());
 
 // divert api requests
 app.use('/api', require('./api/routes'));

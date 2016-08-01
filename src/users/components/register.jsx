@@ -27,7 +27,7 @@ class Register extends React.Component{
                 <p>
                     <input ref="password" type="password" placeholder="Password"/>
                 </p>
-                <Button bsStyle="primary" onClick={() => this.props.onRegisterClick(
+                <Button onClick={() => this.props.onRegisterClick(
                     this.refs.username.value,
                     this.refs.password.value
                 )}>
