@@ -2,6 +2,9 @@ var path = require('path');
 var logger = require('bows')('webpack.base');
 
 function getBaseConfig(rootDir){
+/**
+ * This is common config across all environments
+ */
     return {
         entry: ['babel-polyfill', './client/index.js'],
         output: {
