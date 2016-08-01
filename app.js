@@ -81,5 +81,8 @@ app.get('*', function (req, res) {
     return res.send(render(params));
 });
 
+app.listen(settings.PORT, function () {
+    console.log('Example app listening at http://localhost:'+settings.PORT);
+});
 
-module.exports = app;
+// module.exports = app;

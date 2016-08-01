@@ -6,7 +6,7 @@
  * whereas dev does not.
  *
  * The 'loaders' and 'output' need to exist here, because the path needs
- * to exist at the root (relative to the actual './src/...')
+ * to exist at the root (relative to the actual './client/...')
  */
 
 var settings = require('./settings.js');
@@ -20,7 +20,7 @@ if(settings.DEBUG){
     var webpack = require('./conf/webpack/prod.js');
 }
 
-webpack.entry.push('./src/index.js')
+webpack.entry.push('./client/index.js')
 
 webpack.output = {
     path: path.join(__dirname, 'www'),
@@ -40,12 +40,12 @@ webpack.module = {
         {
             test: /\.jsx?$/,
             loaders: ['react-hot', 'babel'],
-            include: path.join(__dirname, 'src')
+            include: path.join(__dirname, 'client')
         },
         // gather scss files for ?global? classes
         {
             test: /\.scss$/,
-            include: /src/,
+            include: /client/,
             loaders: [
                 'style',
                 'css',
