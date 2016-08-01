@@ -14,8 +14,16 @@ var bows = require('bows');
 var path = require('path');
 
 
+// this file is required at the root, so pass the rootDir into
+// sub folders
+// TODO look into cleaner ways of handling this.
 var rootDir = path.join(__dirname);
 
-module.exports = settings.DEBUG ?
-    require('./conf/webpack/dev.js')(rootDir) :
-    require('./conf/webpack/prod.js')(rootDir);
+
+if(settings.DEBUG){
+    var webpack = require('./conf/webpack/dev.js')(rootDir);
+} else {
+    var webpack = require('./conf/webpack/prod.js')(rootDir);
+}
+
+module.exports = webpack;
