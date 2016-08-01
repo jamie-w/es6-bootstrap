@@ -1,25 +1,35 @@
-var path = require('path');
-var webpack = require('webpack');
+/**
+ * This config takes some basic config from conf/webpack/<dev|prod>.js
+ * and builds the appropriate webpack config from there.
+ *
+ * The primary difference is that dev has webpack hot reloading
+ * whereas dev does not.
+ *
+ * The 'loaders' and 'output' need to exist here, because the path needs
+ * to exist at the root (relative to the actual './src/...')
+ */
 
-var config = {
-  entry: [
-    'babel-polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './src/index.js',
-  ],
-  output: {
+var settings = require('./settings.js');
+var bows = require('bows');
+var path = require('path');
+
+
+if(settings.DEBUG){
+    var webpack = require('./conf/webpack/dev.js');
+} else {
+    var webpack = require('./conf/webpack/prod.js');
+}
+
+webpack.entry.push('./src/index.js')
+
+webpack.output = {
     path: path.join(__dirname, 'www'),
     filename: 'bundle.js',
     publicPath: '/static/',
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-  resolve:{
-        extensions: ['', '.js', '.jsx']
-  },
-  module: {
-        loaders: [
+};
+
+webpack.module = {
+    loaders: [
         // will need something like this for all external css libs
         {
           test: /\.css$/,
@@ -51,9 +61,11 @@ var config = {
                 'img'
             ]
         },
-
-        ]
-    }
+    ]
 };
-module.exports = config;
 
+webpack.resolve = {
+    extensions: ['', '.js', '.jsx']
+};
+
+module.exports = webpack;
