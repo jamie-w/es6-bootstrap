@@ -4,7 +4,6 @@
   "description": "My starting point for future projects",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon app.js",
-    "prod": "NODE_ENV=prod nodemon app.js",
     "lint": "eslint .",
     "client_tests": "client/**/*.tests.js",
     "api_tests": "",

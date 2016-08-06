@@ -1,12 +1,5 @@
 /**
- * This config takes some basic config from conf/webpack/<dev|prod>.js
- * and builds the appropriate webpack config from there.
- *
- * The primary difference is that dev has webpack hot reloading
- * whereas dev does not.
- *
- * The 'loaders' and 'output' need to exist here, because the path needs
- * to exist at the root (relative to the actual './client/...')
+ * Load the appropriate config from webpack based on the settings
  */
 
 var settings = require('./settings.js');
@@ -18,7 +11,6 @@ var path = require('path');
 // sub folders
 // TODO look into cleaner ways of handling this.
 var rootDir = path.join(__dirname);
-
 
 if(settings.DEBUG){
     var webpack = require('./conf/webpack/dev.js')(rootDir);

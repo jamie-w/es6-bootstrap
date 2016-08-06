@@ -20,7 +20,6 @@ if(settings.DEBUG) // test and dev
 {
     // browser hot reloading
     var webpackDevMiddleware = require("webpack-dev-middleware");
-    var webpackHotMiddleware = require("webpack-hot-middleware");
     app.use(webpackDevMiddleware(compiler, {
         hot: true,
         filename: 'bundle.js',
@@ -31,6 +30,7 @@ if(settings.DEBUG) // test and dev
             chunkModules: false
         }
     }));
+    var webpackHotMiddleware = require("webpack-hot-middleware");
     app.use(webpackHotMiddleware(compiler, {
         log: console.log,
         path: '/__webpack_hmr',
@@ -71,7 +71,7 @@ app.use(passport.initialize());
 // divert api requests
 app.use('/api', require('./api/routes'));
 
-// create the react app
+// create and redirect all other requests to the react app
 app.get('*', function (req, res) {
     var render = require('./index.html');
     var params = {
@@ -81,6 +81,9 @@ app.get('*', function (req, res) {
     return res.send(render(params));
 });
 
+// the following lines can be extracted to another file to have
+// a more modular app.
+// For example, they originally existed in `server.js`
 app.listen(settings.PORT, function () {
     console.log('Example app listening at http://localhost:'+settings.PORT);
 });

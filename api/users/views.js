@@ -30,12 +30,13 @@ var views = {
         });
         return res.json(response.data);
     },
+
     login: function*(req, res){
         var userFound = false,
             username = req.body.username,
             password = req.body.password;
 
-        // check that the username+password exist
+        // check that the username+password exists
         var response = yield api.async({
             url: '/users?username=' + username,
             method: 'get',
@@ -55,6 +56,7 @@ var views = {
         }
         done();
     },
+
     logout: function(req, res){
         res.clearCookie('currUser');
         res.json({done: true});
