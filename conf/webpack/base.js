@@ -6,7 +6,7 @@ function getBaseConfig(rootDir){
  * This is common config across all environments
  */
     return {
-        entry: ['babel-polyfill', './client/index.js'],
+        entry: ['babel-polyfill', './cli/index.js'],
         output: {
             path: path.join(rootDir, 'www'),
             filename: 'bundle.js',
@@ -18,12 +18,12 @@ function getBaseConfig(rootDir){
                 {
                     test: /\.jsx?$/,
                     loaders: ['react-hot', 'babel'],
-                    include: path.join(rootDir, 'client')
+                    include: path.join(rootDir, 'cli')
                 },
                 // gather scss files for ?global? classes
                 {
                     test: /\.scss$/,
-                    include: /client/,
+                    include: /cli/,
                     loaders: [
                         'style',
                         'css',

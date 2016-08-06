@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "NODE_ENV=dev nodemon app.js",
     "lint": "eslint .",
-    "client_tests": "client/**/*.tests.js",
+    "client_tests": "cli/**/*.tests.js",
     "api_tests": "",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require settings.js",
-    "test:client": "npm run test client/**/*.tests.js",
-    "test:client:watch": "npm run test client/**/*.tests.js  -- --watch",
+    "test:client": "npm run test cli/**/*.tests.js",
+    "test:client:watch": "npm run test cli/**/*.tests.js  -- --watch",
     "test:api": "npm run test api/**/*tests.js",
     "test:api:watch": "npm run test api/**/*tests.js  -- --watch"
   },
