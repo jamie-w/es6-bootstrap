@@ -6,7 +6,6 @@ module.exports = function render(params){
         <title>Le App</title>
     </head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-    <!--link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css"-->
     <link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">
 
     <style>

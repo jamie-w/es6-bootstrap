@@ -1,5 +1,5 @@
 {
-  "name": "jw-framework",
+  "name": "jwjs",
   "version": "1.0.0",
   "description": "My starting point for future projects",
   "scripts": {
@@ -66,6 +66,7 @@
     "classnames": "^2.2.5",
     "co": "^4.6.0",
     "cookie-parser": "^1.4.1",
+    "copy": "^0.3.0",
     "css-loader": "^0.23.1",
     "csurf": "^1.8.3",
     "express": "^4.13.4",
