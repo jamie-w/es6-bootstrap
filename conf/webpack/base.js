@@ -42,7 +42,7 @@ function getBaseConfig(rootDir){
             ],
         },
         resolve: {
-            extensions: ['', '.js', '.jsx']
+            extensions: ['', '.js', '.jsx', 'scss', 'css']
         }
     };
 }

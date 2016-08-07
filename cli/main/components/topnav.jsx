@@ -20,17 +20,10 @@ class TopNav extends React.Component {
 
     render() {
         return (
-            <Navbar inverse>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <Link to="/">JWJS</Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    {this.getNavItems()}
-                </Navbar.Collapse>
-            </Navbar>
+            <div>
+                <h1 className="container">JWJS</h1>
+                <hr/>
+            </div>
         );
     }
 }
