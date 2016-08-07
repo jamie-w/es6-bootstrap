@@ -1,4 +1,0 @@
-module.exports = {
-    users: [],
-    chats: []
-}
