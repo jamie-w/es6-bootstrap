@@ -21,8 +21,7 @@ class TopNav extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="container">JWJS</h1>
-                <hr/>
+                <h1>JWJS</h1>
             </div>
         );
     }

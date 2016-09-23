@@ -18,7 +18,7 @@ class Menu extends React.Component{
                 <Panel header="Briefs" eventKey="2">
                     <Link to={`/briefs/create/`}>Create a Brief</Link>
                     <Link to={`/briefs/sample-brief/`}>Inca Trail</Link>
-                    <Link to="/">Curve on Tour 1</Link>
+                    <Link to={`/briefs/sample-brief/`}>Curve on Tour 1</Link>
                 </Panel>
                 <Panel header="Messages" eventKey="3">
                     <Link to="/">Hilary</Link>

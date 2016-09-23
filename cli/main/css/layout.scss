@@ -1,0 +1,60 @@
+
+// core layout
+
+$headerHeight: 70px;
+$footerHeight: 45px;
+$menuLeftWidth: 230px;
+
+html {
+    min-height:100%;
+    position: relative;
+}
+
+.container-full {
+    position:absolute;
+    top: 0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    background-color:#000;
+    color:#fff;
+    z-index:1;
+}
+
+
+.app-pane {
+    position:absolute;
+    background-color: #111;
+    color: #fff;
+    border: 1px dotted #fff;
+    &.header,&.footer {
+        left: 0;
+        right:0;
+        h1 {color: #fff;} // bootstrap override for header
+        z-index:3;
+    }
+    &.menu-left,&.main {
+        z-index:2;
+        top: $headerHeight;
+        bottom:$footerHeight;
+    }
+    &.header {
+        top: 0;
+        height: $headerHeight;
+        padding: 0px 20px;
+    }
+    &.footer {
+        bottom: 0;
+        height: $footerHeight;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    &.menu-left {
+        width:$menuLeftWidth;
+        padding: 30px 10px;
+    }
+    &.main {
+        left: $menuLeftWidth;
+        right: 0;
+    }
+}

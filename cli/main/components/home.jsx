@@ -8,22 +8,35 @@ import Menu from './menu';
 import TopNav from './topnav';
 import Footer from './footer';
 
-import sass from '../css/main.scss';
+import main from '../css/layout.scss';
+import utils from '../css/utils.scss';
+
+var sampleLayout1 = (
+    <div>
+        <Col xs={2} style={{marginTop:'55px'}}>
+            <Menu/>
+        </Col>
+        <Col xs={10} className="relative">
+        </Col>
+    </div>
+)
 
 class Home extends React.Component {
     render() {
     return (
-        <div>
-            <TopNav/>
-            <div className="container">
-                <Col xs={2} style={{marginTop:'55px'}}>
-                    <Menu/>
-                </Col>
-                <Col xs={10}>
-                    {this.props.children}
-                </Col>
+        <div className="container-full">
+            <header className={'app-pane header'}>
+                <TopNav/>
+            </header>
+            <nav className={'app-pane menu-left'}>
+                <Menu />
+            </nav>
+            <div className={"app-pane main"}>
+                {this.props.children}
             </div>
-            <Footer/>
+            <footer className={"app-pane footer"}>
+                <Footer/>
+            </footer>
         </div>
     );
   }

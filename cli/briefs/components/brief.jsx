@@ -12,16 +12,15 @@ import sass from '../css/brief.scss';
 // resource tabs respectively
 
 class Brief extends React.Component {
-
     render(){
         return (
             <div className="clearfix brief">
-                <Col xs={8}>
+                <Col xs={6} className="full-height">
                     <h2> Brief title </h2>
                     <Chat/>
                     <CreateChat/>
                 </Col>
-                <Col xs={4}>
+                <Col xs={6}>
                     <Tabs bsStyle="pills"
                         defaultActiveKey="1"
                         id="stupidtabs"

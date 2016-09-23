@@ -15,18 +15,8 @@ const mapStateToProps = (state) => ({
 class Footer extends React.Component {
 
     render() {
-        const footerStyle = {
-            backgroundColor: '#333',
-            color: '#eee',
-            position: 'absolute',
-            bottom: '0px',
-            left: '0px',
-            width: '100%',
-            padding: '10px 20px',
-            fontSize: '16px',
-        }
         return (
-            <div style={footerStyle}>
+            <div>
                 Hello footer
             </div>
         );
