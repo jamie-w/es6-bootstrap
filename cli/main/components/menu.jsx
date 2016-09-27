@@ -15,10 +15,10 @@ class Menu extends React.Component{
                     <Link to="/account/">Security</Link>
                     <Link to="/account/">Preferences</Link>
                 </Panel>
-                <Panel header="Briefs" eventKey="2">
-                    <Link to={`/briefs/create/`}>Create a Brief</Link>
+                <Panel header="Briefs" eventKey="2" style={{position: 'relative'}}>
                     <Link to={`/briefs/sample-brief/`}>Inca Trail</Link>
                     <Link to={`/briefs/sample-brief/`}>Curve on Tour 1</Link>
+                    <span className={'menu-cta'}><i className={'fa fa-plus'}></i></span>
                 </Panel>
                 <Panel header="Messages" eventKey="3">
                     <Link to="/">Hilary</Link>

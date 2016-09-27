@@ -8,6 +8,7 @@ module.exports = function render(params){
     </head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootswatch.com/simplex/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <body>
         <div id='root'></div>
         <script>window.__GLOBALS__ = ${JSON.stringify(params)}</script>
