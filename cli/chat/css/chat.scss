@@ -12,3 +12,38 @@
         overflow-y:scroll;
     }
 }
+
+$createMsgHeight: 60px;
+$chatHeaderHeight: 60px;
+
+.chat-pane {
+
+    // chat layout
+    position:absolute;
+    left: 0;
+    right: 0;
+
+    &.chat-header {
+        top: 0;
+        height: $chatHeaderHeight;
+    }
+    &.chat-box {
+        top: $chatHeaderHeight;
+        bottom: $createMsgHeight;
+    }
+    &.create-msg {
+        height: $createMsgHeight;
+        bottom: 0;
+    }
+
+    // some styling
+    border: 1px dotted #111;
+
+    &.chat-header {
+        font-size: 24px;
+    }
+
+    &.chat-box {
+
+    }
+}

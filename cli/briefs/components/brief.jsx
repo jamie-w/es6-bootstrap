@@ -4,7 +4,6 @@ import {FieldGroup} from '../../utils';
 import {Col, Tabs, Tab} from 'react-bootstrap';
 
 import Chat from '../../chat/components/chat';
-import CreateChat from '../../chat/components/create';
 
 import sass from '../css/brief.scss';
 
@@ -14,13 +13,9 @@ import sass from '../css/brief.scss';
 class Brief extends React.Component {
     render(){
         return (
-            <div className="clearfix brief">
-                <Col xs={6} className="full-height">
-                    <h2> Brief title </h2>
-                    <Chat/>
-                    <CreateChat/>
-                </Col>
-                <Col xs={6}>
+            <div className={'fill'}>
+                <Chat/>
+                <Col xs={6} className={'full-height bg-dark bordered-light'}>
                     <Tabs bsStyle="pills"
                         defaultActiveKey="1"
                         id="stupidtabs"

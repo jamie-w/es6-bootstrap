@@ -3,6 +3,8 @@ import React from 'react';
 import {Editor, EditorState} from 'draft-js';
 import {connect} from 'react-redux';
 
+import chat from '../css/chat.scss';
+
 class CreateChat extends React.Component {
     constructor(props){
         super(props);
@@ -12,10 +14,12 @@ class CreateChat extends React.Component {
     render(){
         const {editorState} = this.state;
         return (
-            <Editor
-                editorState={editorState}
-                onChange={this.onChange}
-            />
+            <div className={'chat-pane create-msg'}>
+                <Editor
+                    editorState={editorState}
+                    onChange={this.onChange}
+                />
+            </div>
         );
     }
 }
