@@ -6,6 +6,22 @@ html {
     position: relative;
 }
 
+body {
+    height: 100%;
+    width: 100%;
+    min-width: 768px;
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: #555459;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .container-full {
     position:absolute;
     top: 0px;
@@ -24,6 +40,10 @@ html {
 
 .full-height {
     height:100%;
+}
+
+.scroll {
+    overflow:scroll;
 }
 
 $headerHeight: 70px;

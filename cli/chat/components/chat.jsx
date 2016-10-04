@@ -1,9 +1,18 @@
 import React from 'react';
 import {Col, Tabs, Tab} from 'react-bootstrap';
 
-import chat from '../css/chat.scss';
 import CreateChat from '../../chat/components/create';
-import ChatHeader from '../../chat/components/header';
+
+import chat from '../css/chat.scss';
+
+class ChatHeader extends React.Component {
+    render(){
+        return (<div className={'chat-pane chat-header'}>
+            <h2 className={'inline'}>Hello Chat</h2>
+        </div>);
+    }
+}
+
 
 class Chat extends React.Component {
     render(){
@@ -12,8 +21,9 @@ class Chat extends React.Component {
                 <ChatHeader/>
                 <div className={'chat-pane chat-box'}>
                     <ul>
-                        <li>Some chat will go here</li>
-                        <li>Another bit of chat</li>
+                        {[...Array(50).keys()].map(function(obj, i){
+                            return <li>Hi, this is some chat.</li>
+                        })}
                     </ul>
                 </div>
                 <CreateChat/>

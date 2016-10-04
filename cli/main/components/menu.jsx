@@ -20,10 +20,6 @@ class Menu extends React.Component{
                     <Link to={`/briefs/sample-brief/`}>Curve on Tour 1</Link>
                     <span className={'menu-cta'}><i className={'fa fa-plus'}></i></span>
                 </Panel>
-                <Panel header="Messages" eventKey="3">
-                    <Link to="/">Hilary</Link>
-                    <Link to="/">Nemeth</Link>
-                </Panel>
             </Accordion>
         );
     }

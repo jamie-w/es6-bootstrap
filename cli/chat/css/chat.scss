@@ -30,6 +30,7 @@ $chatHeaderHeight: 60px;
     &.chat-box {
         top: $chatHeaderHeight;
         bottom: $createMsgHeight;
+        overflow:scroll;
     }
     &.create-msg {
         height: $createMsgHeight;
