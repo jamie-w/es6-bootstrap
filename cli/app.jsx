@@ -16,7 +16,7 @@ const AppComponents = () => (
             <IndexRoute/>
             <Route path="account" component={Account}/>
             <Route path ="briefs">
-                <Route path="sample-brief" component={Brief}/>
+                <Route path=":slug" component={Brief}/>
                 <Route path="create" component={CreateBrief}/>
             </Route>
             <Route path="*" component={NotFound} status={404}/>
@@ -30,6 +30,7 @@ class App extends React.Component{
         // debug type app
         <div>
             <AppComponents/>
+            <DevTools/>
         </div> :
         // production app
         <AppComponents/>

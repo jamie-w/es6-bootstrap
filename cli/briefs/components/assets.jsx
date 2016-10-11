@@ -7,7 +7,6 @@ var logger = bows('assets');
 
 class BaseAsset extends React.Component {
     render(){
-        logger(this)
         return (
             <div className={this.props.className + ' asset-item'}>
                 {this.props.children}
@@ -44,28 +43,28 @@ class Assets extends React.Component {
                     <Tab eventKey="1" title="Photos">
                         <div className={'asset-pane'}>
                             {[...Array(20).keys()].map(function(obj, i){
-                                return <PhotoAsset title="A photo!" body='Some body goes here'/>
+                                return <PhotoAsset key={i} title="A photo!" body='Some body goes here'/>
                             })}
                         </div>
                     </Tab>
                     <Tab eventKey="2" title="Links">
                         <div className={'asset-pane'}>
                         {[...Array(50).keys()].map(function(obj, i){
-                            return <BaseAsset title={'This will be a link'}/>
+                            return <BaseAsset key={i} title={'This will be a link'}/>
                         })}
                         </div>
                     </Tab>
                     <Tab eventKey="3" title="Docs">
                         <div className={'asset-pane'}>
                         {[...Array(50).keys()].map(function(obj, i){
-                            return <BaseAsset title={'This will be a Doc'}/>
+                            return <BaseAsset key={i} title={'This will be a Doc'}/>
                         })}
                         </div>
                     </Tab>
                     <Tab eventKey="4" title="Notes">
                         <div className={'asset-pane'}>
                         {[...Array(50).keys()].map(function(obj, i){
-                            return <BaseAsset title={'This will be a note or a snippet'}/>
+                            return <BaseAsset key={i} title={'This will be a note or a snippet'}/>
                         })}
                         </div>
                     </Tab>

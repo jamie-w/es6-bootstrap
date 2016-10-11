@@ -1,28 +1,47 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Col, Tabs, Tab} from 'react-bootstrap';
 
-import CreateChat from '../../chat/components/create';
+import CreateChat from './create';
 
 import chat from '../css/chat.scss';
+import bows from 'bows';
+
+const logger = bows('chat.jsx');
 
 class ChatHeader extends React.Component {
     render(){
         return (<div className={'chat-pane chat-header'}>
-            <h2 className={'inline'}>Hello Chat</h2>
+            <h2 className={'inline'}>{this.props.title}</h2>
         </div>);
     }
 }
 
 
-class Chat extends React.Component {
+class Msg extends React.Component{
     render(){
         return (
+            <li>{this.props.msg}</li>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
+
+})
+
+
+
+class Chat extends React.Component {
+    render(){
+        logger(this.props);
+        return (
             <Col xs={6} className={'full-height'}>
-                <ChatHeader/>
+                <ChatHeader title={this.props.brief.title}/>
                 <div className={'chat-pane chat-box'}>
                     <ul>
-                        {[...Array(50).keys()].map(function(obj, i){
-                            return <li>Hi, this is some chat.</li>
+                        {this.props.brief.msgs.map(function(msg, i){
+                            return <Msg key={i} msg={msg}/>
                         })}
                     </ul>
                 </div>
@@ -32,4 +51,6 @@ class Chat extends React.Component {
     }
 }
 
-export default Chat;
+export default connect(
+    mapStateToProps
+)(Chat);

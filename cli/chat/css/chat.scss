@@ -35,6 +35,11 @@ $chatHeaderHeight: 60px;
     &.create-msg {
         height: $createMsgHeight;
         bottom: 0;
+        textarea {
+            width: 100%;
+            height:100%;
+            border:none;
+        }
     }
 
     // some styling

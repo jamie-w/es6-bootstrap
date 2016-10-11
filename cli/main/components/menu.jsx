@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {Accordion, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
 
+const mapStateToProps = (state) => ({
+    briefs: state.briefs
+})
+
 class Menu extends React.Component{
 
     render(){
@@ -15,9 +19,10 @@ class Menu extends React.Component{
                     <Link to="/account/">Security</Link>
                     <Link to="/account/">Preferences</Link>
                 </Panel>
-                <Panel header="Briefs" eventKey="2" style={{position: 'relative'}}>
-                    <Link to={`/briefs/sample-brief/`}>Inca Trail</Link>
-                    <Link to={`/briefs/sample-brief/`}>Curve on Tour 1</Link>
+                <Panel header="Briefs" eventKey="2">
+                    {this.props.briefs.map(function(brief, i){
+                        return <Link key={i} to={`/briefs/${brief.slug}/`}>{brief.title}</Link>
+                    })}
                     <span className={'menu-cta'}><i className={'fa fa-plus'}></i></span>
                 </Panel>
             </Accordion>
@@ -25,4 +30,6 @@ class Menu extends React.Component{
     }
 }
 
-export default Menu
+export default connect(
+    mapStateToProps
+)(Menu)
