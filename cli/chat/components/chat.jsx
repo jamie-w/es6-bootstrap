@@ -26,16 +26,15 @@ class Msg extends React.Component{
     }
 }
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = (state, props) => ({
+    brief: state.briefs.find(b => props.brief == b)
 })
 
 
 
 class Chat extends React.Component {
     render(){
-        logger(this.props);
-        return (
+       return (
             <Col xs={6} className={'full-height'}>
                 <ChatHeader title={this.props.brief.title}/>
                 <div className={'chat-pane chat-box'}>
@@ -45,7 +44,7 @@ class Chat extends React.Component {
                         })}
                     </ul>
                 </div>
-                <CreateChat/>
+                <CreateChat brief={this.props.brief}/>
             </Col>
         );
     }

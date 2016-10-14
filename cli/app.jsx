@@ -30,7 +30,7 @@ class App extends React.Component{
         // debug type app
         <div>
             <AppComponents/>
-            <DevTools/>
+        //    <DevTools/>
         </div> :
         // production app
         <AppComponents/>

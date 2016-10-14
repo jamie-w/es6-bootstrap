@@ -16,8 +16,8 @@ import briefReducers from './briefs/reducers';
 
 const reducers = combineReducers({
     users: userReducers,
-    chats: chatReducers,
-    briefs: briefReducers
+    // chats: chatReducers,
+    briefs: chatReducers
 });
 
 import bows from 'bows';
