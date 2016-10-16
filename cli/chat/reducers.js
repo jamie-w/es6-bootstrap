@@ -7,7 +7,7 @@ export default (state=[], action) => {
         case 'SEND_MSG':
             logger(state, action);
             var chatIndex = state.findIndex(c => action.chat_uid === c.uid),
-                chats = state;
+                chats = [...state];
             chats[chatIndex].msgs.push(action.msg);
             return chats
         default:
