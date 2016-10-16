@@ -18,11 +18,7 @@ import bows from 'bows';
 const logger = bows('brief.jsx');
 
 class Brief extends React.Component {
-    constructor(props){
-        super(props);
-    }
     render(){
-        // var brief = this.props.briefs.find(obj => obj.slug === this.props.params.slug);
         return (
             <div className={'fill'}>
                 <Chat brief={this.props.brief} className={'scroll'}/>

@@ -11,12 +11,12 @@ var msgs = [
 
 function shuffle(arr, len){
     var new_arr = [];
-    while(new_arr.length <= len){
+    while(new_arr.length < len){
         var lineLen = Math.floor(Math.random() * 6);
         var i = 0;
         var msg = '';
         while(i < lineLen){
-            msg += arr[Math.floor(Math.random() * arr.length)] + ' ';
+            msg += arr[Math.floor(Math.random() * arr.length)] + (i == lineLen - 1 ? '' : ' ');
             i++;
         }
 
@@ -27,30 +27,47 @@ function shuffle(arr, len){
 
 export const sampleBriefs = [
     {
+        uid: '1',
         title: 'Hello chat system!',
         slug: 'hello-chat-system',
         members: [
             'username_here',
             'jamie'
         ],
-        msgs: shuffle(msgs, 5)
+        chat_uid: 1,
     },
     {
+        uid: '2',
         title: 'Inca Trail',
         slug: 'inca-trail',
         members: [
             'username_here',
             'jamie'
         ],
-        msgs: shuffle(msgs, 50)
+        chat_uid: 2,
     },
     {
+        uid: '3',
         title: 'Curve Open Tour 1',
         slug: 'curve-open-tour-1',
         members: [
             'username_here',
             'jamie'
         ],
-        msgs: shuffle(msgs, 20)
+        chat_uid: 3
     }
+], sampleChats = [
+    {
+        uid: 1,
+        msgs: shuffle(msgs, 5)
+    },
+    {
+        uid: 2,
+        msgs: shuffle(msgs, 50)
+    },
+    {
+        uid: 3,
+        msgs: shuffle(msgs, 20)
+    },
+
 ]

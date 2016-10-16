@@ -27,24 +27,27 @@ class Msg extends React.Component{
 }
 
 const mapStateToProps = (state, props) => ({
-    brief: state.briefs.find(b => props.brief == b)
+    chat: state.chats.find(c => props.brief.chat_uid === c.uid),
+    msgs: state.chats.find(c => props.brief.chat_uid === c.uid).msgs
 })
 
 
 
 class Chat extends React.Component {
+
     render(){
-       return (
+        logger(this.props);
+        return (
             <Col xs={6} className={'full-height'}>
                 <ChatHeader title={this.props.brief.title}/>
                 <div className={'chat-pane chat-box'}>
                     <ul>
-                        {this.props.brief.msgs.map(function(msg, i){
+                        {this.props.msgs.map(function(msg, i){
                             return <Msg key={i} msg={msg}/>
                         })}
                     </ul>
                 </div>
-                <CreateChat brief={this.props.brief}/>
+                <CreateChat chat={this.props.chat}/>
             </Col>
         );
     }

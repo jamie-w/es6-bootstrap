@@ -2,7 +2,7 @@ import GLOBALS from './globals';
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import {sampleBriefs} from './samples';
+import {sampleBriefs, sampleChats} from './samples';
 
 import DevTools from './devtools';
 
@@ -16,8 +16,8 @@ import briefReducers from './briefs/reducers';
 
 const reducers = combineReducers({
     users: userReducers,
-    // chats: chatReducers,
-    briefs: chatReducers
+    chats: chatReducers,
+    briefs: briefReducers
 });
 
 import bows from 'bows';
@@ -31,7 +31,9 @@ const initialState = {
         errors: false,
         msgs: false
     },
-    briefs: sampleBriefs
+    briefs: sampleBriefs,
+    chats: sampleChats
+
 };
 
 export default createStore(

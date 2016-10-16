@@ -10,12 +10,11 @@ import bows from 'bows';
 var logger = bows("chats.create");
 
 const mapStateToProps = (state, props) => ({
-    brief: state.briefs.find(b => b.title == props.brief.title)
 })
 
 const mapDispatchToProps = dispatch => ({
-    sendMsg: (brief_title, msg) => dispatch({
-        type: 'SEND_MSG', brief_title, msg
+    sendMsg: (chat_uid, msg) => dispatch({
+        type: 'SEND_MSG', chat_uid, msg
     })
 })
 
@@ -27,9 +26,11 @@ class CreateChat extends React.Component {
     }
     handleKeyUp(e, self){
         if(e.keyCode == 13 && e.shiftKey == false){
-            logger("Enter pressed");
-            logger("Sending", self.props.brief.title, e.target.value);
-            this.props.sendMsg(self.props.brief.title, e.target.value);
+            this.props.sendMsg(
+                self.props.chat.uid,
+                e.target.value.trim()
+            );
+            e.target.value='';
         }
     }
     render(){
