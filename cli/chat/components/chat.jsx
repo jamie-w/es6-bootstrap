@@ -35,12 +35,16 @@ const mapStateToProps = (state, props) => ({
 
 class Chat extends React.Component {
 
+    componentDidUpdate(){
+        logger(this.refs.msgs, this.refs.msgs.scrollHeight);
+        this.refs.msg_box.scrollTop = this.refs.msgs.scrollHeight;
+    }
     render(){
         return (
             <Col xs={6} className={'full-height'}>
                 <ChatHeader title={this.props.brief.title}/>
-                <div className={'chat-pane chat-box'}>
-                    <ul>
+                <div className={'chat-pane chat-box'} ref="msg_box">
+                    <ul ref="msgs">
                         {this.props.chat.msgs.map(function(msg, i){
                             return <Msg key={i} msg={msg}/>
                         })}
