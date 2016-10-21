@@ -9,7 +9,6 @@ import bows from 'bows';
 const logger = bows('users.reducers');
 
 export default (state=[], action) => {
-    logger(action.type, action);
     switch(action.type){
         case 'REGISTER_FAIL':
             return {...state, errors: {register: action.errors}, msgs:false};

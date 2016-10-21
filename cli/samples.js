@@ -19,7 +19,6 @@ function shuffle(arr, len){
             msg += arr[Math.floor(Math.random() * arr.length)] + (i == lineLen - 1 ? '' : ' ');
             i++;
         }
-
         new_arr.push(msg);
     }
     return new_arr;
@@ -59,15 +58,21 @@ export const sampleBriefs = [
 ], sampleChats = [
     {
         uid: 1,
-        msgs: shuffle(msgs, 5)
+        msgs: shuffle(msgs, 5),
+        alerts: 0,
+        hasUnread: false
     },
     {
         uid: 2,
-        msgs: shuffle(msgs, 50)
+        msgs: shuffle(msgs, 50),
+        alerts: 0,
+        hasUnread: false
     },
     {
         uid: 3,
-        msgs: shuffle(msgs, 20)
+        msgs: shuffle(msgs, 20),
+        alerts: 0,
+        hasUnread: false
     },
 
 ]
