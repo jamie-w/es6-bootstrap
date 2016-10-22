@@ -47,7 +47,7 @@ function buildAssets(total){
         assets = [];
     while(assets.length < total){
         var asset = sampleAssets[Math.floor(Math.random() * 4)];
-        asset.id = assets.length - 1;
+        asset.uid = assets.length - 1;
         assets.push(asset);
     }
     return assets;
@@ -111,7 +111,7 @@ export const sampleBriefs = [
 ], sampleAssetLists = [
     {
         uid: 1,
-        assets: buildAssets(3)
+        assets: buildAssets(10)
     },
     {
         uid: 2,

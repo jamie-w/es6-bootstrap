@@ -24,10 +24,10 @@ class CreateChat extends React.Component {
         //this.state = { editorState: EditorState.createEmpty() }
         //this.onChange = editorState => this.setState({editorState});
     }
-    handleKeyUp(e, self){
+    handleKeyUp(e){
         if(e.keyCode == 13 && e.shiftKey == false){
             this.props.sendMsg(
-                self.props.chat.uid,
+                this.props.chat.uid,
                 e.target.value.trim()
             );
             e.target.value='';
@@ -39,7 +39,7 @@ class CreateChat extends React.Component {
                 <textarea
                     placeholder="Add something to the convo here."
                     name="create-msg"
-                    onKeyUp={e => this.handleKeyUp(e, this)}
+                    onKeyUp={this.handleKeyUp.bind(this)}
                 />
             </div>
         );
