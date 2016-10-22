@@ -28,7 +28,7 @@ class Msg extends React.Component{
 
 const mapStateToProps = (state, props) => ({
     chats: state.chats,
-    chat: state.chats.find(c => props.brief.chat_uid === c.uid)
+    chat: state.chats.find(c => props.chat_uid === c.uid)
 })
 
 
@@ -36,13 +36,12 @@ const mapStateToProps = (state, props) => ({
 class Chat extends React.Component {
 
     componentDidUpdate(){
-        logger(this.refs.msgs, this.refs.msgs.scrollHeight);
         this.refs.msg_box.scrollTop = this.refs.msgs.scrollHeight;
     }
     render(){
         return (
             <Col xs={6} className={'full-height'}>
-                <ChatHeader title={this.props.brief.title}/>
+                <ChatHeader title={"hello chat title"}/>
                 <div className={'chat-pane chat-box'} ref="msg_box">
                     <ul ref="msgs">
                         {this.props.chat.msgs.map(function(msg, i){

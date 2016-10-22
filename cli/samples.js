@@ -24,6 +24,35 @@ function shuffle(arr, len){
     return new_arr;
 }
 
+function buildAssets(total){
+    var sampleAssets = [
+            {
+                type: 'img', title: 'Image title goes here',
+                href: 'http://thecatapi.com/api/images/get?format=src',
+                img_uid: 1,
+            },
+            {
+                type: 'doc', title: 'Document title goes here',
+                href: 'http://drive.google.com',
+            },
+            {
+                type: 'link', title: 'The Internet is Under Seige',
+                href: 'https://www.schneier.com/blog/archives/2016/09/someone_is_lear.html'
+            },
+            {
+                type: 'note', title: 'A quick doc on how the internet is going astray',
+                note_uid: 1,
+            }
+        ],
+        assets = [];
+    while(assets.length < total){
+        var asset = sampleAssets[Math.floor(Math.random() * 4)];
+        asset.id = assets.length - 1;
+        assets.push(asset);
+    }
+    return assets;
+}
+
 export const sampleBriefs = [
     {
         uid: '1',
@@ -34,6 +63,7 @@ export const sampleBriefs = [
             'jamie'
         ],
         chat_uid: 1,
+        assetList_uid: 3
     },
     {
         uid: '2',
@@ -44,6 +74,7 @@ export const sampleBriefs = [
             'jamie'
         ],
         chat_uid: 2,
+        assetList_uid: 2,
     },
     {
         uid: '3',
@@ -53,7 +84,9 @@ export const sampleBriefs = [
             'username_here',
             'jamie'
         ],
-        chat_uid: 3
+        chat_uid: 3,
+        assetList_uid: 1,
+
     }
 ], sampleChats = [
     {
@@ -75,4 +108,17 @@ export const sampleBriefs = [
         hasUnread: false
     },
 
+], sampleAssetLists = [
+    {
+        uid: 1,
+        assets: buildAssets(3)
+    },
+    {
+        uid: 2,
+        assets: buildAssets(0)
+    },
+    {
+        uid: 3,
+        assets: buildAssets(100)
+    }
 ]
