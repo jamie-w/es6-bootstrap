@@ -1,5 +1,7 @@
 import React from 'react';
-import {Col, Tabs, Tab} from 'react-bootstrap';
+import {
+    Col, Tabs, Tab, FormGroup, FormControl, InputGroup, DropdownButton, MenuItem, Button
+} from 'react-bootstrap';
 
 import bows from 'bows';
 
@@ -36,10 +38,9 @@ class Assets extends React.Component {
     render(){
         return (
             <Col xs={6} className={'full-height assets'}>
-                <Tabs bsStyle="pills"
+                <Tabs
                     defaultActiveKey="1"
-                    id="stupidtabs"
-                    className="resources">
+                    id="stupidtabs">
                     <Tab eventKey="1" title="Photos">
                         <div className={'asset-pane'}>
                             {[...Array(20).keys()].map(function(obj, i){
@@ -47,7 +48,7 @@ class Assets extends React.Component {
                             })}
                         </div>
                     </Tab>
-                    <Tab eventKey="2" title="Links">
+                    <Tab eventKey="2" title="Links" className={'pull-right'}>
                         <div className={'asset-pane'}>
                         {[...Array(50).keys()].map(function(obj, i){
                             return <BaseAsset key={i} title={'This will be a link'}/>
@@ -70,7 +71,25 @@ class Assets extends React.Component {
                     </Tab>
                 </Tabs>
                 <div className={'asset-footer'}>
-                   <h3>Hello footer</h3>
+                    <FormGroup>
+                        <InputGroup>
+                            <DropdownButton id="asset-type-opts"
+                                componentClass={InputGroup.Button}
+                                dropup={true} noCaret={true}
+                                title="Add something (file, link, etc)">
+                                <MenuItem eventKey="1">Photo</MenuItem>
+                                <MenuItem eventKey="2">Document</MenuItem>
+                                <MenuItem eventKey="3">Link</MenuItem>
+                                <MenuItem eventKey="4">Snippet</MenuItem>
+                            </DropdownButton>
+                            <FormControl type="text" placeholder="http://"/>
+                            <InputGroup.Button>
+                                <Button bsStyle={'info'}>
+                                    <span className={'fa fa-plus'}></span>
+                                </Button>
+                            </InputGroup.Button>
+                        </InputGroup>
+                    </FormGroup>
                 </div>
             </Col>
         );

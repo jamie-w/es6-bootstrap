@@ -1,17 +1,7 @@
-.brief {
-    .resources {
-        .tab-content {
-            width:100%;
-            margin-top: 15px;
-            border:1px solid #ddd;
-            padding:5px;
-        }
-    }
-}
-
 $assetFooterHeight: 60px;
 $assetHeaderHeight: 60px;
 .assets {
+    padding-top:20px;
     $assetWidth: 200px;
     .asset-item {
         display:inline-block;
@@ -45,5 +35,6 @@ $assetHeaderHeight: 60px;
         left: 0;
         right: 0;
         border-top: 1px solid #ddd;
+        padding: 15px 3px;
     }
 }

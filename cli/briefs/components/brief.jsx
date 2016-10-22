@@ -22,7 +22,7 @@ class Brief extends React.Component {
         return (
             <div className={'fill'}>
                 <Chat brief={this.props.brief} className={'scroll'}/>
-                <Assets className={'scroll'}/>
+                <Assets brief={this.props.brief} className={'scroll'}/>
             </div>
         );
     }
