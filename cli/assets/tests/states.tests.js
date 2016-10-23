@@ -38,7 +38,7 @@ describe('assets', () => {
         ]
     }
 
-    it('sends a message to the store', () => {
+    it('adds a new asset', () => {
         var action = {
             type: 'ADD_ASSET',
             assetListId: 1,

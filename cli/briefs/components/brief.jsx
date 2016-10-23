@@ -17,12 +17,24 @@ import bows from 'bows';
 
 const logger = bows('brief.jsx');
 
+class BriefHeader extends React.Component {
+    render(){
+        return (<div className={'chat-pane chat-header'}>
+            <h2 className={'inline'}>{this.props.brief.title}</h2>
+        </div>);
+    }
+}
 class Brief extends React.Component {
     render(){
         return (
             <div className={'fill'}>
-                <Chat chat_uid={this.props.brief.chat_uid} className={'scroll'}/>
-                <Assets assetList_uid={this.props.brief.assetList_uid} className={'scroll'}/>
+                <BriefHeader {...this.props}/>
+                <Col xs={6} className={'full-height'}>
+                    <Chat chat_uid={this.props.brief.chat_uid} className={'scroll'}/>
+                </Col>
+                <Col xs={6} className={'full-height'}>
+                    <Assets assetList_uid={this.props.brief.assetList_uid} className={'scroll'}/>
+                </Col>
             </div>
         );
     }

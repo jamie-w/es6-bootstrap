@@ -1,10 +1,12 @@
 import React from 'react';
+import Masonry from 'react-masonry-component';
 import {connect} from 'react-redux';
 import {
     Col, Tabs, Tab, FormGroup, FormControl, InputGroup, DropdownButton, Dropdown, MenuItem, Button
 } from 'react-bootstrap';
 
 import bows from 'bows';
+import assetsCss from '../css/assets.scss';
 
 var logger = bows('assets');
 
@@ -98,16 +100,21 @@ class Assets extends React.Component {
             rmAsset: this.props.rmAsset
         };
         return (
-            <Col xs={6} className={'full-height assets'}>
-                <div className={'asset-pane'} ref='img-content'>
-                    {this.props.assetList.assets.map(function(asset, i){
-                        switch(asset.type){
-                            case 'img':
-                                return <PhotoAsset key={i} {...parentProps} asset={asset}/>
-                            default:
-                                return <BaseAsset key={i} {...parentProps} asset={asset}/>
-                        }
-                    }, self)}
+            <div className={'assets full-height'}>
+                <div className={'asset-pane'}>
+                    <Masonry ref='img-content'
+                        options={{transitionDuration: 200}}
+                        disableImagesLoaded={false}
+                        updateOnEachImageLoad={true}>
+                        {this.props.assetList.assets.map(function(asset, i){
+                            switch(asset.type){
+                                case 'img':
+                                    return <PhotoAsset key={i} {...parentProps} asset={asset}/>
+                                default:
+                                    return <BaseAsset key={i} {...parentProps} asset={asset}/>
+                            }
+                        })}
+                    </Masonry>
                 </div>
                 <div className={'asset-footer'}>
                     <FormGroup>
@@ -131,7 +138,7 @@ class Assets extends React.Component {
                         </InputGroup>
                     </FormGroup>
                 </div>
-            </Col>
+            </div>
         );
     }
 }

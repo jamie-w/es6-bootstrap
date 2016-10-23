@@ -9,13 +9,6 @@ import bows from 'bows';
 
 const logger = bows('chat.jsx');
 
-class ChatHeader extends React.Component {
-    render(){
-        return (<div className={'chat-pane chat-header'}>
-            <h2 className={'inline'}>{this.props.title}</h2>
-        </div>);
-    }
-}
 
 
 class Msg extends React.Component{
@@ -40,8 +33,7 @@ class Chat extends React.Component {
     }
     render(){
         return (
-            <Col xs={6} className={'full-height'}>
-                <ChatHeader title={"hello chat title"}/>
+            <div>
                 <div className={'chat-pane chat-box'} ref="msg_box">
                     <ul ref="msgs">
                         {this.props.chat.msgs.map(function(msg, i){
@@ -50,7 +42,7 @@ class Chat extends React.Component {
                     </ul>
                 </div>
                 <CreateChat chat={this.props.chat}/>
-            </Col>
+            </div>
         );
     }
 }
