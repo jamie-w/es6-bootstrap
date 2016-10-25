@@ -2,10 +2,10 @@ import chai, {expect} from 'chai';
 import bows from 'bows';
 import assetReducer from '../reducers';
 
-var logger = bows('chat.tests.state');
+let logger = bows('chat.tests.state');
 
 describe('assets', () => {
-    var sampleAssets = [
+    let sampleAssets = [
         {
             type: 'img', title: 'Image title goes here',
             href: 'http://thecatapi.com/api/images/get?format=src',
@@ -25,13 +25,13 @@ describe('assets', () => {
         }
     ];
 
-    var getSampleAsset = function(index, uid){
-        var asset = sampleAssets[index];
+    let getSampleAsset = function(index, uid){
+        let asset = sampleAssets[index];
         asset.id = uid;
         return asset;
     };
 
-    var getInitialState = function(){
+    let getInitialState = function(){
         return [
             {uid: 1, assets: [getSampleAsset(0, 1), getSampleAsset(1, 2)]},
             {uid: 2, assets: [getSampleAsset(0, 3), getSampleAsset(0, 4)]}
@@ -39,24 +39,24 @@ describe('assets', () => {
     }
 
     it('adds a new asset', () => {
-        var action = {
+        let action = {
             type: 'ADD_ASSET',
             assetListId: 1,
             asset: sampleAssets[2]
         };
-        var state = getInitialState();
-        var newState = assetReducer(state, action);
+        let state = getInitialState();
+        let newState = assetReducer(state, action);
         expect(newState[0].assets.length).to.equal(3);
     });
 
     it('removes an asset', () => {
-        var action = {
+        let action = {
             type: 'RM_ASSET',
             assetListId:1,
             assetId: 3
         };
-        var state = getInitialState();
-        var newState = assetReducer(state, action);
+        let state = getInitialState();
+        let newState = assetReducer(state, action);
         expect(newState[0].assets.length).to.equal(1);
     });
 });

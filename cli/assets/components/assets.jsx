@@ -64,7 +64,7 @@ class PhotoAsset extends BaseAsset {
     }
 }
 
-class Assets extends React.Component {
+class CreateAsset extends React.Component {
 
     guessAssetType(href, assetType){
         if(href.match(/.*(jpg|png|gif)$/g))
@@ -74,6 +74,11 @@ class Assets extends React.Component {
         else
             return 'link';
     }
+
+    handleTypeSelect(key, event){
+        this.assetType = key
+    }
+
 
     handleAddAsset(){
         var href = this.refs.href.value;
@@ -90,15 +95,40 @@ class Assets extends React.Component {
         this.refs[asset.type + '-content'].scrollTop = 0;
     }
 
-    handleTypeSelect(key, event){
-        this.assetType = key
+    render(){
+        return (
+            <FormGroup>
+                <InputGroup>
+                    <DropdownButton id="asset-type-opts"
+                        componentClass={InputGroup.Button}
+                        dropup={true} noCaret={true}
+                        title="Add something"
+                        onSelect={this.handleTypeSelect.bind(this)}>
+                        <MenuItem eventKey="img">Photo</MenuItem>
+                        <MenuItem eventKey="doc">Document</MenuItem>
+                        <MenuItem eventKey="link">Link</MenuItem>
+                        <MenuItem eventKey="note">Snippet</MenuItem>
+                    </DropdownButton>
+                    <input className={'form-control'} type="text" placeholder="http://" ref="href"/>
+                    <InputGroup.Button>
+                        <Button bsStyle={'info'} onClick={this.handleAddAsset.bind(this)}>
+                            <span className={'fa fa-plus'}></span>
+                        </Button>
+                    </InputGroup.Button>
+                </InputGroup>
+            </FormGroup>)
     }
+}
+
+class Assets extends React.Component {
 
     render(){
+
         var parentProps = {
             assetList: this.props.assetList,
             rmAsset: this.props.rmAsset
         };
+
         return (
             <div className={'assets full-height'}>
                 <div className={'asset-pane'}>
@@ -117,26 +147,7 @@ class Assets extends React.Component {
                     </Masonry>
                 </div>
                 <div className={'asset-footer'}>
-                    <FormGroup>
-                        <InputGroup>
-                            <DropdownButton id="asset-type-opts"
-                                componentClass={InputGroup.Button}
-                                dropup={true} noCaret={true}
-                                title="Add something"
-                                onSelect={this.handleTypeSelect.bind(this)}>
-                                <MenuItem eventKey="img">Photo</MenuItem>
-                                <MenuItem eventKey="doc">Document</MenuItem>
-                                <MenuItem eventKey="link">Link</MenuItem>
-                                <MenuItem eventKey="note">Snippet</MenuItem>
-                            </DropdownButton>
-                            <input className={'form-control'} type="text" placeholder="http://" ref="href"/>
-                            <InputGroup.Button>
-                                <Button bsStyle={'info'} onClick={this.handleAddAsset.bind(this)}>
-                                    <span className={'fa fa-plus'}></span>
-                                </Button>
-                            </InputGroup.Button>
-                        </InputGroup>
-                    </FormGroup>
+                    <CreateAsset {...this.props}/>
                 </div>
             </div>
         );
