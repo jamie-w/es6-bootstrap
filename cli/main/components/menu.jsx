@@ -2,50 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {
-    Accordion, Panel, ListGroup, ListGroupItem, Button, Modal
+    Panel, Button
 } from 'react-bootstrap';
 import bows from 'bows';
 
-import {FieldGroup} from '../../utils';
+import CreateBrief from '../../briefs/components/create';
 
 const logger = bows('menu.jsx');
 
 const mapStateToProps = (state) => ({
     briefs: state.briefs
 })
-
-
-class CreateBrief extends React.Component {
-    render(){
-        return (
-            <Modal {...this.props}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Create a Brief</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <FieldGroup
-                        id="briefTitle"
-                        type="text"
-                        label="The name of your brief"
-                        placeholder="Title here"
-                    />
-                    <FieldGroup
-                        id="briefUsers"
-                        componentClass="textarea"
-                        label="Enter email addresses here"
-                        placeholder="Comma separated email addresses"
-                    />
-                    <div className={'clearfix'}>
-                        <Button
-                            bsStyle={'success'}
-                            className={'pull-right'}
-                            onClick={this.props.onHide}
-                        >Create</Button>
-                    </div>
-                </Modal.Body>
-            </Modal>);
-    }
-}
 
 
 class Menu extends React.Component {

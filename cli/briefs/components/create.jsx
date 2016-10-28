@@ -1,25 +1,39 @@
 import React from 'react';
 
+import {
+    Accordion, Panel, ListGroup, ListGroupItem, Button, Modal
+} from 'react-bootstrap';
 import {FieldGroup} from '../../utils';
 
 class CreateBrief extends React.Component {
-
     render(){
         return (
-            <FieldGroup
-                id="briefTitle"
-                type="text"
-                label="Brief Title"
-                placeholder="Enter title here"
-            />
-            <FieldGroup
-                id="inviteFriends"
-                type="textfield"
-                label="Invite your friends here"
-                placeholder="Emails or names separated by commas"
-            />
-            <button className="btn btn-primary">Create</button>
-        );
+            <Modal {...this.props}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Create a Brief</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <FieldGroup
+                        id="briefTitle"
+                        type="text"
+                        label="The name of your brief"
+                        placeholder="Title here"
+                    />
+                    <FieldGroup
+                        id="briefUsers"
+                        componentClass="textarea"
+                        label="Enter email addresses here"
+                        placeholder="Comma separated email addresses"
+                    />
+                    <div className={'clearfix'}>
+                        <Button
+                            bsStyle={'success'}
+                            className={'pull-right'}
+                            onClick={this.props.onHide}
+                        >Create</Button>
+                    </div>
+                </Modal.Body>
+            </Modal>);
     }
 }
 

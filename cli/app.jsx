@@ -4,7 +4,6 @@ import {Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
 import settings from '../settings';
 import Home from './main/components/home';
 import Account from './users/components/account';
-import CreateBrief from './briefs/components/create-brief';
 import Brief from './briefs/components/brief';
 
 import NotFound from './notfound';
@@ -17,7 +16,6 @@ const AppComponents = () => (
             <Route path="account" component={Account}/>
             <Route path ="briefs">
                 <Route path=":slug" component={Brief}/>
-                <Route path="create" component={CreateBrief}/>
             </Route>
             <Route path="*" component={NotFound} status={404}/>
         </Route>
