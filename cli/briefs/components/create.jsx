@@ -4,23 +4,35 @@ import {
     Button, Modal
 } from 'react-bootstrap';
 import {FieldGroup, slugify} from '../../utils';
+import store from '../../store';
 import bows from 'bows';
 
 const logger = bows('briefs.create');
 
 const mapStateToProps = (state, props) => ({
-
+    briefs: state.briefs
 })
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = (dispatch) => ({
     addBrief: (brief) => dispatch({
         type: 'CREATE_BRIEF', brief
-
     })
 })
 
 
 class CreateBrief extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.numBriefs = props.briefs.length
+    }
+
+    componentDidUpdate(){
+        if(this.props.briefs.length != this.numBriefs){
+            this.numBriefs = this.props.briefs.length;
+            this.props.onHide();
+        }
+    }
 
     handleAddBrief(){
         let brief = {

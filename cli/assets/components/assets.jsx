@@ -92,7 +92,6 @@ class CreateAsset extends React.Component {
             this.props.assetList.uid,
             asset
         );
-        this.refs[asset.type + '-content'].scrollTop = 0;
     }
 
     render(){
@@ -122,6 +121,18 @@ class CreateAsset extends React.Component {
 
 class Assets extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.numAssets = props.assetList.assets.length;
+    }
+
+    componentDidUpdate(){
+        if(this.numAssets != this.props.assetList.assets.length){
+            this.numAssets = this.props.assetList.assets.length;
+            this.refs.assetList.scrollTop = 0;
+        }
+    }
+
     render(){
 
         var parentProps = {
@@ -131,8 +142,8 @@ class Assets extends React.Component {
 
         return (
             <div className={'assets full-height'}>
-                <div className={'asset-pane'}>
-                    <Masonry ref='img-content'
+                <div className={'asset-pane'} ref='assetList'>
+                    <Masonry
                         options={{transitionDuration: 200}}
                         disableImagesLoaded={false}
                         updateOnEachImageLoad={true}>
