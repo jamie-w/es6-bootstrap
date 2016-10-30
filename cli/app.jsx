@@ -28,6 +28,7 @@ class App extends React.Component{
         // debug type app
         <div>
             <AppComponents/>
+            <DevTools/>
         </div> :
         // production app
         <AppComponents/>

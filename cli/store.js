@@ -8,6 +8,7 @@ import DevTools from './devtools';
 
 // App sagas
 import userSagas from './users/sagas';
+import briefSagas from './briefs/sagas';
 
 // App reducers
 import userReducers from './users/reducers';
@@ -39,11 +40,18 @@ const initialState = {
     assetLists: sampleAssetLists,
 };
 
-export default createStore(
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
     reducers,
     initialState,
     compose(
-        applyMiddleware(createSagaMiddleware(userSagas)),
+        applyMiddleware(sagaMiddleware),
         DevTools.instrument(),
     )
 );
+
+sagaMiddleware.run(userSagas);
+sagaMiddleware.run(briefSagas);
+
+export default store

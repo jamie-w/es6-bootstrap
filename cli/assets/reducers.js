@@ -5,6 +5,13 @@ var logger = bows("asset.reducers");
 
 export default (state=[], action) => {
     switch(action.type){
+        case 'CREATE_ASSET_LIST':
+            var assetLists = [...state];
+            assetLists.push({
+                uid: state.length + 1,
+                assets: []
+            })
+            return assetLists;
         case 'ADD_ASSET':
             var assetListIndex = state.findIndex(c => action.assetListId === c.uid),
                 assetList = [...state];

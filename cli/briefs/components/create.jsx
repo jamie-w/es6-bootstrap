@@ -1,11 +1,36 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
 import {
-    Accordion, Panel, ListGroup, ListGroupItem, Button, Modal
+    Button, Modal
 } from 'react-bootstrap';
-import {FieldGroup} from '../../utils';
+import {FieldGroup, slugify} from '../../utils';
+import bows from 'bows';
+
+const logger = bows('briefs.create');
+
+const mapStateToProps = (state, props) => ({
+
+})
+
+const mapDispatchToProps = (dispatch, props) => ({
+    addBrief: (brief) => dispatch({
+        type: 'CREATE_BRIEF', brief
+
+    })
+})
+
 
 class CreateBrief extends React.Component {
+
+    handleAddBrief(){
+        let brief = {
+            title: this.refs.title.value,
+            emails: this.refs.emails.value,
+            slug: slugify(this.refs.title.value)
+        }
+        this.props.addBrief(brief)
+    }
+
     render(){
         return (
             <Modal {...this.props}>
@@ -15,21 +40,21 @@ class CreateBrief extends React.Component {
                 <Modal.Body>
                     <FieldGroup
                         id="briefTitle"
-                        type="text"
                         label="The name of your brief"
-                        placeholder="Title here"
-                    />
+                    ><input className={'form-control'} ref='title'
+                        placeholder='The name of your brief'/>
+                    </FieldGroup>
                     <FieldGroup
                         id="briefUsers"
-                        componentClass="textarea"
                         label="Enter email addresses here"
-                        placeholder="Comma separated email addresses"
-                    />
+                    ><textarea className={'form-control'} ref='emails'
+                        placeholder='Comma separated email addresses'/>
+                    </FieldGroup>
                     <div className={'clearfix'}>
                         <Button
                             bsStyle={'success'}
                             className={'pull-right'}
-                            onClick={this.props.onHide}
+                            onClick={this.handleAddBrief.bind(this)}
                         >Create</Button>
                     </div>
                 </Modal.Body>
@@ -37,4 +62,7 @@ class CreateBrief extends React.Component {
     }
 }
 
-export default CreateBrief;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateBrief);
