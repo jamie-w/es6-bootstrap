@@ -10,7 +10,7 @@ import Assets from '../../assets/components/assets';
 import sass from '../css/brief.scss';
 
 const mapStateToProps = (state, props) => ({
-    brief: state.briefs.find(obj => obj.slug === props.params.slug)
+    brief: state.briefs.byId[props.params.slug]
 })
 
 import bows from 'bows';
@@ -30,10 +30,10 @@ class Brief extends React.Component {
             <div className={'fill'}>
                 <BriefHeader {...this.props}/>
                 <Col xs={6} className={'full-height'}>
-                    <Chat chat_uid={this.props.brief.chat_uid} className={'scroll'}/>
+                    <Chat chat_uid={this.props.brief.chatId} className={'scroll'}/>
                 </Col>
                 <Col xs={6} className={'full-height'}>
-                    <Assets assetList_uid={this.props.brief.assetList_uid} className={'scroll'}/>
+                    <Assets assetList_uid={this.props.brief.assetListId} className={'scroll'}/>
                 </Col>
             </div>
         );

@@ -44,81 +44,85 @@ function buildAssets(total){
                 note_uid: 1,
             }
         ],
-        assets = [];
+        assets = {};
     while(assets.length < total){
         var asset = sampleAssets[Math.floor(Math.random() * 4)];
         asset.uid = assets.length - 1;
-        assets.push(asset);
+        assets[asset.uid] =  asset;
     }
     return assets;
 }
 
-export const sampleBriefs = [
-    {
-        uid: '1',
-        title: 'Hello chat system!',
-        slug: 'hello-chat-system',
-        members: [
-            'username_here',
-            'jamie'
-        ],
-        chat_uid: 1,
-        assetList_uid: 3
-    },
-    {
-        uid: '2',
-        title: 'Inca Trail',
-        slug: 'inca-trail',
-        members: [
-            'username_here',
-            'jamie'
-        ],
-        chat_uid: 2,
-        assetList_uid: 2,
-    },
-    {
-        uid: '3',
-        title: 'Curve Open Tour 1',
-        slug: 'curve-open-tour-1',
-        members: [
-            'username_here',
-            'jamie'
-        ],
-        chat_uid: 3,
-        assetList_uid: 1,
-
+export const sampleBriefs = {
+    byId: {
+        'hello-chat-system': {
+            uid: 1,
+            title: 'Hello chat system!',
+            slug: 'hello-chat-system',
+            members: [
+                'username_here',
+                'jamie'
+            ],
+            chatId: 1,
+            assetListId: 3
+        },
+        'inca-trail': {
+            uid: 2,
+            title: 'Inca Trail',
+            slug: 'inca-trail',
+            members: [
+                'username_here',
+                'jamie'
+            ],
+            chatId: 2,
+            assetListId: 2,
+        },
+        'curve-open-tour-1': {
+            uid: 3,
+            title: 'Curve Open Tour 1',
+            slug: 'curve-open-tour-1',
+            members: [
+                'username_here',
+                'jamie'
+            ],
+            chatId: 3,
+            assetListId: 1,
+        }
     }
-], sampleChats = [
-    {
-        uid: 1,
-        msgs: shuffle(msgs, 5),
-        alerts: 0,
-        hasUnread: false
-    },
-    {
-        uid: 2,
-        msgs: shuffle(msgs, 50),
-        alerts: 0,
-        hasUnread: false
-    },
-    {
-        uid: 3,
-        msgs: shuffle(msgs, 20),
-        alerts: 0,
-        hasUnread: false
-    },
-
-], sampleAssetLists = [
-    {
-        uid: 1,
-        assets: buildAssets(10)
-    },
-    {
-        uid: 2,
-        assets: buildAssets(0)
-    },
-    {
-        uid: 3,
-        assets: buildAssets(100)
+}, sampleChats = {
+    byId: {
+        1: {
+            uid: 1,
+            msgs: shuffle(msgs, 5),
+            alerts: 0,
+            hasUnread: false
+        },
+        2: {
+            uid: 2,
+            msgs: shuffle(msgs, 50),
+            alerts: 0,
+            hasUnread: false
+        },
+        3: {
+            uid: 3,
+            msgs: shuffle(msgs, 20),
+            alerts: 0,
+            hasUnread: false
+        }
     }
-]
+}, sampleAssetLists = {
+    byId: {
+        1: {
+            uid: 1,
+            assets: buildAssets(10)
+        },
+        2: {
+            uid: 2,
+            assets: buildAssets(0)
+        },
+        3: {
+            uid: 3,
+            assets: buildAssets(100)
+        }
+    }
+}

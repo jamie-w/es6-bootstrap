@@ -20,8 +20,7 @@ class Msg extends React.Component{
 }
 
 const mapStateToProps = (state, props) => ({
-    chats: state.chats,
-    chat: state.chats.find(c => props.chat_uid === c.uid)
+    chat: state.chats.byId[props.chatId],
 })
 
 

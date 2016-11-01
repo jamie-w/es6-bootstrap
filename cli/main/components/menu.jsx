@@ -11,7 +11,7 @@ import CreateBrief from '../../briefs/components/create';
 const logger = bows('menu.jsx');
 
 const mapStateToProps = (state) => ({
-    briefs: state.briefs
+    briefs: state.briefs.byId
 })
 
 
@@ -36,7 +36,7 @@ class Menu extends React.Component {
                     <Link to="/account/">Preferences</Link>
                 </Panel>
                 <Panel header="Briefs" eventKey="2">
-                    {this.props.briefs.map(function(brief, i){
+                    {Object.values(this.props.briefs).map(function(brief){
                         return <Link key={i} to={`/briefs/${brief.slug}/`}>{brief.title}</Link>
                     })}
                     <p>&nbsp;</p>

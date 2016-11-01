@@ -10,14 +10,13 @@ export default (state=[], action) => {
                 msgs: [],
                 alerts: 0,
                 hasUnread: false
-            }
-            let chats = [...state]
-            chats.push(chat);
+            };
+            let chats = {...state}
+            chats.byId[chat.uid] = chat;
             return chats;
         case 'SEND_MSG':
-            var chatIndex = state.findIndex(c => action.chat_uid === c.uid),
-                chats = [...state];
-            chats[chatIndex].msgs.push(action.msg);
+            var chats = {...state};
+            chats.byId[action.chatId].msgs.push(action.msg);
             return chats
         default:
             return state;

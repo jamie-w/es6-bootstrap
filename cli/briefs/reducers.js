@@ -4,7 +4,7 @@ export default (state=[], action) => {
             var briefs = [...state],
                 newBrief = action.brief;
             newBrief.uid = briefs.length + 1;
-            briefs.push(newBrief);
+            briefs.byId[newBrief.uid] = newBrief;
             return briefs;
         default:
             return state;
