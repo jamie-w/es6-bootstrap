@@ -2,22 +2,36 @@ import bows from 'bows';
 
 var logger = bows("chat.reducers");
 
-export default (state=[], action) => {
+export default (state={}, action) => {
     switch(action.type){
         case 'CREATE_CHAT':
-            let chat = {
+            var chat = {
                 uid: state.length + 1,
                 msgs: [],
                 alerts: 0,
                 hasUnread: false
             };
-            let chats = {...state}
-            chats.byId[chat.uid] = chat;
-            return chats;
+            return {
+                ...state,
+                'byId': {
+                    ...state.byId,
+                    [chat.uid]: chat
+                }
+            };
         case 'SEND_MSG':
-            var chats = {...state};
-            chats.byId[action.chatId].msgs.push(action.msg);
-            return chats
+            logger(state, action)
+            var chat = state.byId[action.chatId];
+            chat.msgs.push(action.msg);
+            return {
+                ...state,
+                'byId': {
+                    ...state.byId,
+                    [chat.uid]: {
+                        ...chat,
+                        'msgs': chat.msgs
+                    }
+                }
+            }
         default:
             return state;
     }

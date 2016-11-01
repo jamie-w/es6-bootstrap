@@ -13,8 +13,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    sendMsg: (chat_uid, msg) => dispatch({
-        type: 'SEND_MSG', chat_uid, msg
+    sendMsg: (chatId, msg) => dispatch({
+        type: 'SEND_MSG', chatId, msg
     })
 })
 
