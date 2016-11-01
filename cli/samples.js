@@ -44,11 +44,11 @@ function buildAssets(total){
                 note_uid: 1,
             }
         ],
-        assets = {};
+        assets = [];
     while(assets.length < total){
         var asset = sampleAssets[Math.floor(Math.random() * 4)];
         asset.uid = assets.length - 1;
-        assets[asset.uid] =  asset;
+        assets.push(asset);
     }
     return assets;
 }
@@ -88,7 +88,8 @@ export const sampleBriefs = {
             chatId: 3,
             assetListId: 1,
         }
-    }
+    },
+    allIds: ['hello-chat-system', 'inca-trail', 'curve-open-tour']
 }, sampleChats = {
     byId: {
         1: {
@@ -109,7 +110,8 @@ export const sampleBriefs = {
             alerts: 0,
             hasUnread: false
         }
-    }
+    },
+    allIds: [1, 2, 3]
 }, sampleAssetLists = {
     byId: {
         1: {
@@ -124,5 +126,6 @@ export const sampleBriefs = {
             uid: 3,
             assets: buildAssets(100)
         }
-    }
+    },
+    allIds: [1, 2, 3]
 }

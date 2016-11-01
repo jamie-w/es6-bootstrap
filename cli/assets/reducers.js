@@ -3,7 +3,7 @@ import bows from 'bows';
 
 var logger = bows("asset.reducers");
 
-export default (state=[], action) => {
+export default (state={}, action) => {
     switch(action.type){
         case 'CREATE_ASSET_LIST':
             var assetLists = {...state},
@@ -14,14 +14,34 @@ export default (state=[], action) => {
             }
             return assetLists;
         case 'ADD_ASSET':
-            var assetList = {...state};
-            assetList.byId[action.assetListId].assets.unshift(action.asset);
-            return assetList
+            logger(action, state);
+            var assetList = state.byId[action.assetListId];
+            assetList.assets.unshift(action.asset);
+            return {
+                ...state,
+                'byId' : {
+                    ...state.byId,
+                    [action.assetListId]: {
+                        ...assetList,
+                        'assets': assetList.assets
+                    }
+                }
+            };
         case 'RM_ASSET':
-            var assetList = {...state},
-                assetIndex = assetList.byId[action.assetListId].assets.findIndex(a => action.assetId === a.uid);
-            assetList.byId[action.assetListId].assets.splice(assetIndex, 1);
-            return assetList
+            logger(action, state);
+            var assetList = state.byId[action.assetListId],
+                assetIndex = assetList.assets.findIndex(a => action.assetId === a.uid);
+            assetList.assets.splice(assetIndex, 1);
+
+            return {...state,
+                'byId': {
+                    ...state.byId,
+                    [action.assetListId]:  {
+                        ...assetList,
+                        'assets': assetList.assets
+                    }
+                }
+            }
         default:
             return state;
     }

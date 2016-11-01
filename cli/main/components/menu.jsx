@@ -36,7 +36,7 @@ class Menu extends React.Component {
                     <Link to="/account/">Preferences</Link>
                 </Panel>
                 <Panel header="Briefs" eventKey="2">
-                    {Object.values(this.props.briefs).map(function(brief){
+                    {Object.values(this.props.briefs).map(function(brief, i){
                         return <Link key={i} to={`/briefs/${brief.slug}/`}>{brief.title}</Link>
                     })}
                     <p>&nbsp;</p>

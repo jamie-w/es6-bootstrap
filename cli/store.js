@@ -42,6 +42,7 @@ const initialState = {
 
 const sagaMiddleware = createSagaMiddleware();
 
+logger('reducers', reducers);
 const store = createStore(
     reducers,
     initialState,

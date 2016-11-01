@@ -30,10 +30,10 @@ class Brief extends React.Component {
             <div className={'fill'}>
                 <BriefHeader {...this.props}/>
                 <Col xs={6} className={'full-height'}>
-                    <Chat chat_uid={this.props.brief.chatId} className={'scroll'}/>
+                    <Chat chatId={this.props.brief.chatId} className={'scroll'}/>
                 </Col>
                 <Col xs={6} className={'full-height'}>
-                    <Assets assetList_uid={this.props.brief.assetListId} className={'scroll'}/>
+                    <Assets assetListId={this.props.brief.assetListId} className={'scroll'}/>
                 </Col>
             </div>
         );
