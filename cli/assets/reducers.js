@@ -1,9 +1,10 @@
+import {combineReducers} from 'redux';
 
 import bows from 'bows';
 
 var logger = bows("asset.reducers");
 
-export default (state={}, action) => {
+const byId = (state={}, action) => {
     switch(action.type){
         case 'CREATE_ASSET_LIST':
             var assetLists = {...state},
@@ -47,3 +48,14 @@ export default (state={}, action) => {
     }
 }
 
+const allIds = (state, action) => {
+    switch(action.type){
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    byId,
+    allIds
+})
