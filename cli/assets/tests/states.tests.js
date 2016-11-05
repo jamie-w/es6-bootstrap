@@ -33,10 +33,8 @@ describe('assets', () => {
 
     let getInitialState = function(){
         return {
-            byId: {
-                1: {uid: 1, assets: [getSampleAsset(0, 1), getSampleAsset(1, 2)]},
-                2: {uid: 2, assets: [getSampleAsset(0, 3), getSampleAsset(0, 4)]}
-            }
+            1: {uid: 1, assets: [getSampleAsset(0, 1), getSampleAsset(1, 2)]},
+            2: {uid: 2, assets: [getSampleAsset(0, 3), getSampleAsset(0, 4)]}
         }
     }
 
@@ -48,7 +46,7 @@ describe('assets', () => {
         };
         let state = getInitialState();
         let newState = assetReducer(state, action);
-        expect(newState.byId[action.assetListId].assets.length).to.equal(3);
+        expect(newState[action.assetListId].assets.length).to.equal(3);
     });
 
     it('removes an asset', () => {
@@ -59,6 +57,6 @@ describe('assets', () => {
         };
         let state = getInitialState();
         let newState = assetReducer(state, action);
-        expect(newState.byId[action.assetListId].assets.length).to.equal(1);
+        expect(newState[action.assetListId].assets.length).to.equal(1);
     });
 });

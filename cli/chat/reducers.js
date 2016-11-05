@@ -1,8 +1,9 @@
 import bows from 'bows';
+import {combineReducers} from 'redux';
 
 var logger = bows("chat.reducers");
 
-export default (state={}, action) => {
+const chatsById = (state, action) => {
     switch(action.type){
         case 'CREATE_CHAT':
             var chat = {
@@ -13,23 +14,17 @@ export default (state={}, action) => {
             };
             return {
                 ...state,
-                'byId': {
-                    ...state.byId,
-                    [chat.uid]: chat
-                }
+                [chat.uid]: chat
             };
         case 'SEND_MSG':
             logger(state, action)
-            var chat = state.byId[action.chatId];
+            var chat = state[action.chatId];
             chat.msgs.push(action.msg);
             return {
                 ...state,
-                'byId': {
-                    ...state.byId,
-                    [chat.uid]: {
-                        ...chat,
-                        'msgs': chat.msgs
-                    }
+                [chat.uid]: {
+                    ...chat,
+                    'msgs': chat.msgs
                 }
             }
         default:
@@ -37,3 +32,11 @@ export default (state={}, action) => {
     }
 }
 
+const allChatIds = (state, action) => {
+    return state;
+}
+
+export default (state, action) => ({
+    byId: chatsById(state, action),
+    allIds: allChatIds(state, action)
+})
