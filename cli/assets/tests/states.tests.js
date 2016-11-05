@@ -2,10 +2,10 @@ import chai, {expect} from 'chai';
 import bows from 'bows';
 import assetReducer from '../reducers';
 
-let logger = bows('chat.tests.state');
+var logger = bows('chat.tests.state');
 
 describe('assets', () => {
-    let sampleAssets = [
+    var sampleAssets = [
         {
             type: 'img', title: 'Image title goes here',
             href: 'http://thecatapi.com/api/images/get?format=src',
@@ -25,13 +25,13 @@ describe('assets', () => {
         }
     ];
 
-    let getSampleAsset = function(index, uid){
-        let asset = sampleAssets[index];
+    var getSampleAsset = function(index, uid){
+        var asset = sampleAssets[index];
         asset.id = uid;
         return asset;
     };
 
-    let getInitialState = function(){
+    var getInitialState = function(){
         return {
             1: {uid: 1, assets: [getSampleAsset(0, 1), getSampleAsset(1, 2)]},
             2: {uid: 2, assets: [getSampleAsset(0, 3), getSampleAsset(0, 4)]}
@@ -39,24 +39,24 @@ describe('assets', () => {
     }
 
     it('adds a new asset', () => {
-        let action = {
+        var action = {
             type: 'ADD_ASSET',
             assetListId: 1,
             asset: sampleAssets[2]
         };
-        let state = getInitialState();
-        let newState = assetReducer(state, action);
-        expect(newState[action.assetListId].assets.length).to.equal(3);
+        var state = getInitialState();
+        var newState = assetReducer(state, action);
+        expect(newState.byId[action.assetListId].assets.length).to.equal(3);
     });
 
     it('removes an asset', () => {
-        let action = {
+        var action = {
             type: 'RM_ASSET',
             assetListId: 1,
             assetId: 3
         };
-        let state = getInitialState();
-        let newState = assetReducer(state, action);
-        expect(newState[action.assetListId].assets.length).to.equal(1);
+        var state = getInitialState();
+        var newState = assetReducer(state, action);
+        expect(newState.byId[action.assetListId].assets.length).to.equal(1);
     });
 });

@@ -17,7 +17,6 @@ const chatsById = (state, action) => {
                 [chat.uid]: chat
             };
         case 'SEND_MSG':
-            logger(state, action)
             var chat = state[action.chatId];
             chat.msgs.push(action.msg);
             return {
