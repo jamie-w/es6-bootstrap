@@ -6,6 +6,9 @@ import Home from './main/components/home';
 import Account from './users/components/account';
 import Brief from './briefs/components/brief';
 
+import {Chats} from './chat/components/chat';
+import {AssetLists} from './assets/components/assets';
+
 import NotFound from './notfound';
 import DevTools from './devtools';
 
@@ -17,6 +20,8 @@ const AppComponents = () => (
             <Route path ="briefs">
                 <Route path=":slug" component={Brief}/>
             </Route>
+            <Route path="chat/:chatId" component={Chats}/>
+            <Route path="assets/:assetListId" component={AssetLists}/>
             <Route path="*" component={NotFound} status={404}/>
         </Route>
     </Router>

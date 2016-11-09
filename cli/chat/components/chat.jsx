@@ -10,6 +10,22 @@ import bows from 'bows';
 const logger = bows('chat.jsx');
 
 
+const chatFromRouter = (state, props) => {
+    logger(state);
+    return {chat: state.chats.byId[props.params.chatId]}
+}
+class Chats extends React.Component {
+
+    render() {
+        return (
+            <Chat chat={this.props.chat}/>
+        )
+    }
+}
+
+let connChats = connect(chatFromRouter)(Chats)
+export {connChats as Chats}
+
 
 class Msg extends React.Component{
     render(){
@@ -19,17 +35,17 @@ class Msg extends React.Component{
     }
 }
 
-const mapStateToProps = (state, props) => ({
+
+const chatFromState = (state, props) => ({
     chat: state.chats.byId[props.chatId],
 })
-
-
 
 class Chat extends React.Component {
 
     componentDidUpdate(){
         this.refs.msg_box.scrollTop = this.refs.msgs.scrollHeight;
     }
+
     render(){
         return (
             <div>
@@ -47,5 +63,5 @@ class Chat extends React.Component {
 }
 
 export default connect(
-    mapStateToProps
+    chatFromState
 )(Chat);

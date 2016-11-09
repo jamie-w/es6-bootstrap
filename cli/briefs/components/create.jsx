@@ -10,7 +10,7 @@ import bows from 'bows';
 const logger = bows('briefs.create');
 
 const mapStateToProps = (state, props) => ({
-    briefs: state.briefs
+    briefs: state.briefs.allIds
 })
 
 const mapDispatchToProps = (dispatch) => ({

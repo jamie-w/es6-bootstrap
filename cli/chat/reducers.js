@@ -35,7 +35,7 @@ const allChatIds = (state, action) => {
     return state;
 }
 
-export default (state, action) => ({
-    byId: chatsById(state, action),
-    allIds: allChatIds(state, action)
+export default (state={}, action) => ({
+    byId: chatsById(state.byId, action),
+    allIds: allChatIds(state.allIds, action)
 })

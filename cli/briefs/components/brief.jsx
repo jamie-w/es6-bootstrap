@@ -9,9 +9,10 @@ import Assets from '../../assets/components/assets';
 
 import sass from '../css/brief.scss';
 
-const mapStateToProps = (state, props) => ({
-    brief: state.briefs.byId[props.params.slug]
-})
+const mapStateToProps = (state, props) => {
+    logger(state);
+    return {brief: state.briefs.byId[props.params.slug]}
+}
 
 import bows from 'bows';
 

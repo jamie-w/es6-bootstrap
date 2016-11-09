@@ -24,6 +24,21 @@ const mapDispatchToProps = (dispatch) => ({
     })
 })
 
+
+// Shouldn't actually be used
+export class AssetLists extends React.Component {
+    constructor(props){
+        super(props);
+        this.assetList = props.params.assetListId
+    }
+    render(){
+        return (
+            <Assets assetList={this.assetList}/>
+        )
+    }
+}
+
+
 class BaseAsset extends React.Component {
     handleDeleteAsset(){
         this.props.rmAsset(this.props.assetList.uid, this.props.asset.uid)
