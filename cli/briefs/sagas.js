@@ -13,7 +13,7 @@ export function* doCreateBrief(action){
         //var chats = yield put({type: "CREATE_CHAT"});
         store.dispatch({type: 'CREATE_CHAT'});
         let chats = store.getState().chats
-        action.brief.chat_uid = chats[chats.length - 1].uid;
+        action.brief.chatId = chats[chats.length - 1].uid;
 
         // var assetLists = yield put({type: 'CREATE_ASSET_LIST'});
         store.dispatch({type: 'CREATE_ASSET_LIST'});
@@ -26,7 +26,6 @@ export function* doCreateBrief(action){
 
         // yield put({type: "ADD_BRIEF_SUCCESS", action.brief})
         yield store.getState().briefs
-
     }
     catch(error) {
     }

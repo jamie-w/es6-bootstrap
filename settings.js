@@ -15,6 +15,7 @@ var settings = {
     API_ROOT: conf.api_url,
     PORT: conf.port ? conf.port : 3000,
     DEBUG: conf.debug ? conf.debug : false,
+    TEST_API: conf.test_api ? conf.test_api : false,
 }
 
 bows('settings')(settings);
