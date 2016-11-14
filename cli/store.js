@@ -11,16 +11,16 @@ import userSagas from './users/sagas';
 import briefSagas from './briefs/sagas';
 
 // App reducers
-import userReducers from './users/reducers';
-import chatReducers from './chat/reducers';
-import briefReducers from './briefs/reducers';
-import assetReducers from './assets/reducers';
+import {userReducer} from './users/reducers';
+import {chatReducer, msgReducer} from './chat/reducers';
+import {briefReducer} from './briefs/reducers';
+import {assetListReducer} from './assets/reducers';
 
 const reducers = combineReducers({
     users: userReducers,
-    chats: chatReducers,
+    chats: chatReducer,
     briefs: briefReducers,
-    assetLists: assetReducers
+    assetLists: assetListReducer
 });
 
 import bows from 'bows';

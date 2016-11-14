@@ -14,6 +14,7 @@ const chatFromRouter = (state, props) => {
     logger(state);
     return {chat: state.chats.byId[props.params.chatId]}
 }
+
 class Chats extends React.Component {
 
     render() {

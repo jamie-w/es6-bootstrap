@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai';
 import bows from 'bows';
 
-import userReducer from '../reducers';
+import {userReducer} from '../reducers';
 
 var logger = bows('test.users.states');
 

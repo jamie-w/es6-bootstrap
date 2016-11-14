@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 // Shouldn't actually be used
-export class AssetLists extends React.Component {
+class AssetLists extends React.Component {
     constructor(props){
         super(props);
         this.assetList = props.params.assetListId

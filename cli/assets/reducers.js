@@ -48,7 +48,4 @@ const allAssetListIds = (state, action) => {
     }
 }
 
-export default (state={}, action) => ({
-    byId: assetListById(state.byId, action),
-    allIds: allAssetListIds(state.allIds, action)
-})
+export const assetListReducer = (state={}, action) => assetListById(state.byId, action);

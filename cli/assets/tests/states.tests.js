@@ -1,6 +1,6 @@
 import chai, {expect} from 'chai';
 import bows from 'bows';
-import assetReducer from '../reducers';
+import {assetListReducer} from '../reducers';
 
 var logger = bows('chat.tests.state');
 
@@ -32,10 +32,10 @@ describe('assets', () => {
     };
 
     var getInitialState = function(){
-        return {
+        return {byId: {
             1: {uid: 1, assets: [getSampleAsset(0, 1), getSampleAsset(1, 2)]},
             2: {uid: 2, assets: [getSampleAsset(0, 3), getSampleAsset(0, 4)]}
-        }
+        }};
     }
 
     it('adds a new asset', () => {
@@ -45,8 +45,8 @@ describe('assets', () => {
             asset: sampleAssets[2]
         };
         var state = getInitialState();
-        var newState = assetReducer(state, action);
-        expect(newState.byId[action.assetListId].assets.length).to.equal(3);
+        var newState = assetListReducer(state, action);
+        expect(newState[action.assetListId].assets.length).to.equal(3);
     });
 
     it('removes an asset', () => {
@@ -56,7 +56,7 @@ describe('assets', () => {
             assetId: 3
         };
         var state = getInitialState();
-        var newState = assetReducer(state, action);
-        expect(newState.byId[action.assetListId].assets.length).to.equal(1);
+        var newState = assetListReducer(state, action);
+        expect(newState[action.assetListId].assets.length).to.equal(1);
     });
 });

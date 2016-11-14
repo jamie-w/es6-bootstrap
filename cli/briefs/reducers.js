@@ -13,16 +13,4 @@ const briefsById = (state={}, action) => {
     }
 }
 
-
-const allBriefsById = (state=[], action) => {
-    switch(action.type){
-        case 'ADD_BRIEF':
-        default:
-            return state;
-    }
-}
-
-export default (state={}, action) => ({
-    byId: briefsById(state.byId, action),
-    allIds: allBriefsById(state.allIds, action)
-})
+export const briefReducer = (state={}, action) => briefsById(state.byId, action);
