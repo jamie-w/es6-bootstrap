@@ -1,4 +1,5 @@
 import bows from 'bows';
+import {combineReducers} from 'redux';
 import {reduceById} from '../utils';
 
 var logger = bows("chat.reducers");
@@ -31,7 +32,7 @@ const chatsById = (state={}, action) => {
     }
 }
 
-export const chatReducer = (state, action) => chatsById(state.byId, action);
+export const chatReducer = combineReducers({byId: chatsById});
 
 const msgsById = (state = {}, action) => {
     switch(action.type){
@@ -46,4 +47,4 @@ const msgsById = (state = {}, action) => {
     }
 }
 
-export const msgReducer = (state, action) => msgsById(state.byId, action);
+export const msgReducer = (state={}, action) => msgsById({byId: state.byId}, action);

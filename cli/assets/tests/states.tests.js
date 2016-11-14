@@ -46,7 +46,7 @@ describe('assets', () => {
         };
         var state = getInitialState();
         var newState = assetListReducer(state, action);
-        expect(newState[action.assetListId].assets.length).to.equal(3);
+        expect(newState.byId[action.assetListId].assets.length).to.equal(3);
     });
 
     it('removes an asset', () => {
@@ -57,6 +57,6 @@ describe('assets', () => {
         };
         var state = getInitialState();
         var newState = assetListReducer(state, action);
-        expect(newState[action.assetListId].assets.length).to.equal(1);
+        expect(newState.byId[action.assetListId].assets.length).to.equal(1);
     });
 });

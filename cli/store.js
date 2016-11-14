@@ -17,9 +17,9 @@ import {briefReducer} from './briefs/reducers';
 import {assetListReducer} from './assets/reducers';
 
 const reducers = combineReducers({
-    users: userReducers,
+    users: userReducer,
     chats: chatReducer,
-    briefs: briefReducers,
+    briefs: briefReducer,
     assetLists: assetListReducer
 });
 

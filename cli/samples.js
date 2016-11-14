@@ -89,7 +89,6 @@ export const sampleBriefs = {
             assetListId: 1,
         }
     },
-    allIds: ['hello-chat-system', 'inca-trail', 'curve-open-tour']
 }, sampleChats = {
     byId: {
         1: {
@@ -111,7 +110,6 @@ export const sampleBriefs = {
             hasUnread: false
         }
     },
-    allIds: [1, 2, 3]
 }, sampleAssetLists = {
     byId: {
         1: {
@@ -127,5 +125,4 @@ export const sampleBriefs = {
             assets: buildAssets(100)
         }
     },
-    allIds: [1, 2, 3]
 }

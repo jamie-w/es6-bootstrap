@@ -10,9 +10,10 @@ import CreateBrief from '../../briefs/components/create';
 
 const logger = bows('menu.jsx');
 
-const mapStateToProps = (state) => ({
-    briefs: state.briefs.byId
-})
+const mapStateToProps = (state) => {
+    logger(state);
+    return {briefs: state.briefs.byId}
+}
 
 
 class Menu extends React.Component {
@@ -27,6 +28,7 @@ class Menu extends React.Component {
         this.setState({showModal: true});
     }
     render(){
+        logger(this.props);
         return (
             <div>
                 <Panel header="Account" eventKey="1">

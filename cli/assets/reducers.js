@@ -4,16 +4,19 @@ import bows from 'bows';
 
 var logger = bows("asset.reducers");
 
-const assetListById = (state, action) => {
+const assetListById = (state={}, action) => {
     switch(action.type){
         case 'CREATE_ASSET_LIST':
             var assetLists = {...state},
-                newId = state.length + 1;
-            assetLists[newId] = {
-                uid: newId,
-                assets: []
-            }
-            return assetLists;
+                newId = state.length + 1,
+                newAssetList = {
+                    uid: newId,
+                    assets: []
+                }
+            return {
+                ...state,
+                [newId]: newAssetList
+            };
         case 'ADD_ASSET':
             var assetList = state[action.assetListId];
             assetList.assets.unshift(action.asset);
@@ -48,4 +51,4 @@ const allAssetListIds = (state, action) => {
     }
 }
 
-export const assetListReducer = (state={}, action) => assetListById(state.byId, action);
+export const assetListReducer = combineReducers({byId: assetListById});

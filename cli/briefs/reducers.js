@@ -13,4 +13,4 @@ const briefsById = (state={}, action) => {
     }
 }
 
-export const briefReducer = (state={}, action) => briefsById(state.byId, action);
+export const briefReducer = (state={}, action) => briefsById({byId: state.byId}, action);
