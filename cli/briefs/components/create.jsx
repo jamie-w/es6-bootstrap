@@ -14,8 +14,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addBrief: (brief) => dispatch({
-        type: 'CREATE_BRIEF', brief
+    addBrief: (payload) => dispatch({
+        type: 'CREATE_BRIEF', payload
     })
 })
 

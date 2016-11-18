@@ -10,7 +10,7 @@ const logger = bows('briefs.saga');
 
 export function* doCreateBrief(action){
     try {
-        yield call(api.post, '/api/briefs/create', action);
+        yield call(api.post, '/api/briefs/create', action.payload);
         /*store.dispatch({type: 'CREATE_CHAT'});
         let chats = store.getState().chats
         action.brief.chatId = chats[chats.length - 1].uid;

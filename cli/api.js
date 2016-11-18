@@ -13,10 +13,13 @@ var logger = bows('cli.api');
  */
 function mockPost(url, data){
     logger(url, data);
-    return setTimeout((url, data) => {
-        let urlComponents = url.split('/')
-        logger(urlComponents);
-        return require(`./${app}/test_api/`).view(data);
+    return setTimeout(() => {
+        var [app, view] = url.replace(/^\/api\/(\S+)\/?$/, '$1').split('/')
+        logger(app, view);
+        var appCmp = require(`./${app}/test_api`);
+        logger(appCmp);
+        logger(appCmp[view]);
+        appCmp[view]('post', data);
     }, 0)
 }
 
