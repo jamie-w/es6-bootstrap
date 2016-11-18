@@ -14,7 +14,6 @@ export function* doRegister(action) {
     try {
         var resp = yield call(axios.post, '/api/users/register', action);
         if(!resp.data || resp.data.errors){
-            logger(resp.data.errors);
             yield put({type: 'REGISTER_FAIL', errors: resp.data.errors});
         }
         else{
@@ -29,7 +28,6 @@ export function* doRegister(action) {
 
 export function* doLogin(action){
     try {
-        logger('in doLogin', action);
         var resp = yield call(axios.post, '/api/users/login', action);
         if(resp.data.errors)
             yield put({type: 'LOGIN_FAIL', errors: resp.data.errors});
@@ -43,7 +41,6 @@ export function* doLogin(action){
 
 export function* doLogout(action){
     try {
-        logger('in doLogout', action)
         var resp = yield call(axios.post, '/api/users/logout', action);
         yield put({type: 'LOGOUT_SUCCESS'});
     } catch(error){
