@@ -29,7 +29,14 @@ const logger = bows('store');
 
 logger(GLOBALS);
 
-const initialState = process.env.NODE_ENV == 'test' ? undefined : {
+const initialState = process.env.NODE_ENV == 'test'
+    ? { // test store
+        users: {},
+        briefs: {},
+        chats: {},
+        assetLists: {}
+    }
+    : { // initialized store with sample data
     users: {
         currUser: GLOBALS.currUser,
         errors: false,

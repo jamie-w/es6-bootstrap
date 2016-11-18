@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai';
 import bows from 'bows';
 import {briefReducer} from '../reducers';
-
+import {doCreateBrief} from '../sagas';
 
 let logger = bows('briefs.tests');
 

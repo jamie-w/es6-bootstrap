@@ -2,15 +2,13 @@ import {takeEvery, takeLatest} from 'redux-saga';
 import {call, put, fork} from 'redux-saga/effects';
 import {browserHistory} from 'react-router';
 
-import store from '../store';
-
 import bows from 'bows';
 
 const logger = bows('briefs.saga');
 
 export function* doCreateBrief(action){
     try {
-        var chats = yield call(api.post, '/api/briefs/create', action);
+        //var chats = yield call(api.post, '/api/briefs/create', action);
         store.dispatch({type: 'CREATE_CHAT'});
         let chats = store.getState().chats
         action.brief.chatId = chats[chats.length - 1].uid;

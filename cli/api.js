@@ -11,8 +11,6 @@ import settings from '../settings';
 
 let Api = {};
 
-let store = process.env.NODE_ENV == 'test' ? {} : getStore();
-
 if(settings.test_api){
      function *mockCall(){
         return setTimeout((method, url, data) => {
