@@ -1,4 +1,4 @@
-var bows = require('bows');
+var logger = require('bows')('settings');
 
 var conf = function(){
     switch(process.env.NODE_ENV){
@@ -18,10 +18,22 @@ var settings = {
     TEST_API: conf.test_api ? conf.test_api : false,
 }
 
+/**
+ * Let's format our errors a little better, shall we?
+*/
 if(settings.DEBUG){
+    Error.prepareStackTrace = function (err, frames) {
+        var lines = [err.toString()];
+
+        lines.push.apply(lines, frames.map(function(frame) {
+            return '    at ' + frame.toString();
+        }));
+
+        return lines.join('\n');
+    }
 
 }
 
-bows('settings')(settings);
+logger(settings);
 
 module.exports = settings;

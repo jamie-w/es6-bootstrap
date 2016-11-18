@@ -12,11 +12,13 @@ export const create = (method, data) => {
     if(method !== 'post'){
         return { errors: ['Invalid method'] };
     }
+    var prevChatId = findMax(store.chats.byId)
+    var prevAssetListId = findMax(store.assetLists.byId)
     const brief = {
         title: data.title,
         slug: slugify(data.title),
         members: [],
-        chatId: findMax(store.chats.byId).uid + 1,
-        assetListId: findMax(store.assetLists.byId).uid + 1,
+        chatId:  prevChatId ? prevChatId.uid + 1 : 1,
+        assetListId: prevAssetListId ? prevAssetListId.uid + 1 : 1,
     };
 }

@@ -31,10 +31,10 @@ logger(GLOBALS);
 
 const initialState = process.env.NODE_ENV == 'test'
     ? { // test store
-        users: {},
-        briefs: {},
-        chats: {},
-        assetLists: {}
+        users: { },
+        briefs: { byId: {} },
+        chats: { byId: {} },
+        assetLists: { byId: {} }
     }
     : { // initialized store with sample data
     users: {
