@@ -18,6 +18,10 @@ var settings = {
     TEST_API: conf.test_api ? conf.test_api : false,
 }
 
+if(settings.DEBUG){
+
+}
+
 bows('settings')(settings);
 
 module.exports = settings;

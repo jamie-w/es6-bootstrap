@@ -1,5 +1,5 @@
 module.exports = {
     debug: true,
     api_url: 'http://localhost:3004',
-    test_api: true,
+    test_api: false,
 }

@@ -10,7 +10,7 @@ const logger = bows('briefs.saga');
 
 export function* doCreateBrief(action){
     try {
-        //var chats = yield put({type: "CREATE_CHAT"});
+        var chats = yield call(api.post, '/api/briefs/create', action);
         store.dispatch({type: 'CREATE_CHAT'});
         let chats = store.getState().chats
         action.brief.chatId = chats[chats.length - 1].uid;
@@ -26,6 +26,7 @@ export function* doCreateBrief(action){
 
         // yield put({type: "ADD_BRIEF_SUCCESS", action.brief})
         yield store.getState().briefs
+
     }
     catch(error) {
     }
@@ -33,6 +34,6 @@ export function* doCreateBrief(action){
 
 export default function* root(){
     yield [
-        fork(yield* takeLatest('CREATE_BRIEF', doCreateBrief)),
+        fork(function*() { yield* takeLatest('CREATE_BRIEF', doCreateBrief)}),
     ]
 }

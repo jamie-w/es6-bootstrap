@@ -29,7 +29,7 @@ const logger = bows('store');
 
 logger(GLOBALS);
 
-const initialState = {
+const initialState = process.env.NODE_ENV == 'test' ? undefined : {
     users: {
         currUser: GLOBALS.currUser,
         errors: false,

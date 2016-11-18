@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {getStore} from 'redux';
 
-import settings from '../settings/';
+import settings from '../settings';
 
 /**
  * This is a heavy-handed middleware to generate responses from the store
@@ -8,12 +9,21 @@ import settings from '../settings/';
  * on the server that will relay the query to an api in a separate app.
  */
 
+let Api = {};
+
+let store = process.env.NODE_ENV == 'test' ? {} : getStore();
+
 if(settings.test_api){
-    export const api = (method, root, data) => function(){
-        setTimeout({
-            console.log('hitting the test api');
-        }, 0);
+     function *mockCall(){
+        return setTimeout((method, url, data) => {
+            let {app, view} = url.split('/')
+            logger(app, view);
+            return require(`./${app}/test_api/`).view(method, data);
+        }, 0)
     }
+    Api.post = mockCall, Api.put = mockCall;
 } else {
-    export const api = (method, url, data) => axios[method](url, data);
+    Api = function*(method, url, data) { return axios[method](url, data); }
 }
+
+export default Api
