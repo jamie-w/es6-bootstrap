@@ -1,4 +1,4 @@
-**Deprecated! Used in favor of bitbucket.org/_jweatherby/jwjs and bitbucket.org/_jweatherby/jwjs-app**
+**Deprecated! Used in favor of [jwjs](https://bitbucket.org/_jweatherby/jwjs) and [jwjs-app](https://bitbucket.org/_jweatherby/jwjs-app)**
 
 JW-Framework
 ============
