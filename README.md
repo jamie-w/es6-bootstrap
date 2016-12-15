@@ -1,5 +1,7 @@
+**Deprecated! Used in favor of bitbucket.org/_jweatherby/jwjs and bitbucket.org/_jweatherby/jwjs-app**
+
 JW-Framework
-===========
+============
 
 Purpose
 -------
